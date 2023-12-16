@@ -1,0 +1,6 @@
+
+*.dll
+*.so
+*.vsidx
+*.dylib
+*.cache
