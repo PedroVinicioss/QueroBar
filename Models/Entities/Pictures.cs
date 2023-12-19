@@ -10,6 +10,11 @@ namespace QueroBar.Models.Entities
         [Required]
         [StringLength(150)]
         public string pic { get; set; }
+        public string? Path { get; set; }
+
+        [NotMapped]
+        public IFormFile File { get; set; }
+
         public DateTime? creationDate { get; set; }
 
         public int? pub_id { get; set; }
