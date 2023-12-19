@@ -11,7 +11,10 @@ namespace QueroBar.Models.Entities
         [StringLength(150)]
         public string? Pic { get; set; }
         public DateTime? CreationDate { get; set; }
+        public string? Path { get; set; }
 
+        [NotMapped]
+        public IFormFile? File { get; set; }
         public int? Pub_Id { get; set; }
         [ForeignKey("Pub_Id")]
         public virtual Pub? Pub { get; set; }

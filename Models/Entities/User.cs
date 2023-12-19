@@ -17,7 +17,7 @@ namespace QueroBar.Models.Entities
         [Required]
         [StringLength(50)]
         [EmailAddress]
-        public string? email { get; set; }
+        public string? Email { get; set; }
 
         [Required]
         [StringLength(50)]

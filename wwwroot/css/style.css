@@ -1,0 +1,1454 @@
+/********** CSS (Template)  **********/
+:root {
+    --primary: #FF7628;
+    --secondary: #2B9BFF;
+    --light: #EFFDF5;
+    --dark: #2B3940;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+}
+
+/********** CSS (Template) **********/
+
+/* *************************************************************************** */
+
+/********** Spinner de carregamento (Template) **********/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
+/********** Spinner de carregamento (Template) **********/
+
+/* *************************************************************************** */
+
+/********** Button (Template) **********/
+.btn {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    transition: .5s;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+    color: #FFFFFF;
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 2px;
+}
+
+/********** Button (Template) **********/
+
+/* *************************************************************************** */
+
+/********** Navbar (Template) **********/
+.navbar .dropdown-toggle::after {
+    border: none;
+    content: "\f107";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 5px;
+    transition: .5s;
+}
+
+@media(max-width:600px) {
+    .iconsNav {
+        margin-left: 10px;
+        margin-top: 0;
+    }
+}
+
+.iconsNav:nth-child(3) {
+    margin-left: 0;
+}
+
+.iconsNav i:hover {
+    color: #FF7628;
+}
+
+.navbar .dropdown-toggle[aria-expanded=true]::after {
+    transform: rotate(-180deg);
+}
+
+.navbar-dark .navbar-nav .nav-link,
+.navbar-light .navbar-nav .nav-link {
+    margin-right: 30px;
+    padding: 25px 0;
+    color: #FFFFFF;
+    font-size: 15px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+
+    .navbar-dark .navbar-nav .nav-link,
+    .navbar-light .navbar-nav .nav-link {
+        margin-right: 0;
+        padding: 10px 0;
+    }
+
+    .navbar-light .navbar-nav {
+        border-top: 1px solid #EEEEEE;
+    }
+}
+
+.navbar-light .navbar-brand,
+.navbar-light a.btn {
+    height: 75px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.navbar-light.sticky-top {
+    top: -100px;
+    transition: .5s;
+}
+
+@media (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: block;
+        top: 100%;
+        margin-top: 0;
+        transform: rotateX(-75deg);
+        transform-origin: 0% 0%;
+        opacity: 0;
+        visibility: hidden;
+        transition: .5s;
+
+    }
+
+    .navbar .nav-item:hover .dropdown-menu {
+        transform: rotateX(0deg);
+        visibility: visible;
+        transition: .5s;
+        opacity: 1;
+    }
+}
+
+/********** Navbar (Template) **********/
+
+/* *************************************************************************** */
+
+/********** Header (Template) **********/
+.header-carousel .container,
+.page-header .container {
+    position: relative;
+    padding: 45px 0 45px 35px;
+    border-left: 15px solid var(--primary);
+}
+
+.header-carousel .container::before,
+.header-carousel .container::after,
+.page-header .container::before,
+.page-header .container::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 15px;
+    background: var(--primary);
+}
+
+.header-carousel .container::after,
+.page-header .container::after {
+    top: 100%;
+    margin-top: -15px;
+}
+
+@media (max-width: 768px) {
+    .header-carousel .owl-carousel-item {
+        position: relative;
+        min-height: 500px;
+    }
+
+    .header-carousel .owl-carousel-item img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .header-carousel .owl-carousel-item p {
+        font-size: 14px !important;
+        font-weight: 400 !important;
+    }
+
+    .header-carousel .owl-carousel-item h1 {
+        font-size: 30px;
+        font-weight: 600;
+    }
+}
+
+.header-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    right: 8%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+
+.header-carousel .owl-nav .owl-prev,
+.header-carousel .owl-nav .owl-next {
+    margin: 7px 0;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    background: transparent;
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+    font-size: 22px;
+    transition: .5s;
+}
+
+.header-carousel .owl-nav .owl-prev:hover,
+.header-carousel .owl-nav .owl-next:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.page-header {
+    background: linear-gradient(rgba(43, 57, 64, .5), rgba(43, 57, 64, .5)), url(../img/carousel-1.jpg) center center no-repeat;
+    background-size: cover;
+    height: 400px;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    color: var(--light);
+}
+
+.background-imageHeader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 500px;
+}
+
+/********** Header (Template) **********/
+
+/* *************************************************************************** */
+
+/********** Lista de Trabalhos NãoUsadoAinda (Template) **********/
+.nav-pills .nav-item .active {
+    border-bottom: 2px solid var(--primary);
+}
+
+.job-item {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    transition: .5s;
+}
+
+.job-item:hover {
+    border-color: rgba(0, 0, 0, .08);
+    box-shadow: none;
+}
+
+/********** Lista de Trabalhos NãoUsadoAinda (Template) **********/
+
+/* *************************************************************************** */
+
+/********** Rodapé (Template) **********/
+.footer .btn.btn-social {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--light);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    transition: .3s;
+}
+
+.footer .btn.btn-social:hover {
+    color: var(--primary);
+    border-color: var(--light);
+}
+
+.footer .btn.btn-link {
+    display: block;
+    margin-bottom: 5px;
+    padding: 0;
+    text-align: left;
+    font-size: 15px;
+    font-weight: normal;
+    text-transform: capitalize;
+    transition: .3s;
+}
+
+.footer .btn.btn-link::before {
+    position: relative;
+    content: "\f105";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+.footer .btn.btn-link:hover {
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+.footer .form-control {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.footer .copyright {
+    padding: 25px 0;
+    font-size: 15px;
+    border-top: 1px solid rgba(256, 256, 256, .1);
+}
+
+.footer .copyright a {
+    color: var(--light);
+}
+
+.footer .footer-menu a {
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, .1);
+}
+
+.footer .footer-menu a:last-child {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
+}
+
+/********** Rodapé (Template) **********/
+
+/* *************************************************************************** */
+
+/********** NetFlix Cards **********/
+.main-content {
+    padding-top: 40px;
+}
+
+.iq-main-header {
+    margin-bottom: 20px;
+}
+
+.main-title a:hover,
+.main-title a:focus {
+    color: #e50914 !important;
+}
+
+.iq-view-all:hover {
+    color: #ff5e00;
+}
+
+.favorites-slider .slick-list {
+    overflow: visible;
+    padding-bottom: 40px !important;
+}
+
+.favorites-slider li.slide-item {
+    float: left;
+    width: 25%;
+}
+
+li.slide-item {
+    position: relative;
+    padding: 0px 15px;
+}
+
+li.slide-item .block-images {
+    position: relative;
+    width: 100%;
+    transition: all 0.45s ease 0s;
+    overflow: hidden;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.6s ease 0s;
+}
+
+li.slide-item:hover .block-images {
+    overflow: visible;
+    border-left: 5px solid #FF7628;
+}
+
+li.slide-item:hover .block-images .img-box {
+    position: relative;
+}
+
+.favorites-slider .slick-list {
+    overflow: visible;
+}
+
+li.slide-item:hover .block-images {
+    z-index: 99;
+    transform: scale3d(1.1, 1.1, 1) translate3d(0, 0, 0) perspective(500px);
+    transform-origin: 50% 50%;
+    transition: all 0.6s ease 0s;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+}
+
+.block-social-info {
+    position: absolute;
+    top: 0;
+    left: auto;
+    bottom: 0;
+    right: 25px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+}
+
+.block-description {
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.block-description>h6 {
+    font-size: 1.5em;
+}
+
+.block-description .iq-title {
+    font-size: 18px;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+
+.music-play-lists li {
+    position: relative;
+    height: 30px;
+    width: 30px;
+    line-height: 35px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    margin: 0 auto 7px;
+    display: flex;
+    align-items: center;
+}
+
+.music-play-lists span {
+    position: relative;
+    display: block;
+    height: 20px;
+    width: 20px;
+    line-height: 26px;
+    font-size: 12px;
+    text-align: center;
+    background: #fff;
+    color: #e50914;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.45s ease 0s;
+    cursor: pointer;
+}
+
+.music-play-lists .count-box {
+    height: 15px !important;
+    width: 15px !important;
+    line-height: 15px !important;
+    font-size: 8px !important;
+    background: #e50914 !important;
+    color: #fff !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0;
+    text-align: center !important;
+}
+
+.music-play-lists li:hover span {
+    background: #e50914;
+    color: #fff;
+    transition: all 0.45s ease 0s;
+
+}
+
+.text-white {
+    font-size: 14px;
+}
+
+li.slide-item .block-images::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+li.slide-item:hover .block-images::before {
+    opacity: 1;
+    z-index: 9;
+}
+
+li.slide-item:hover .block-description {
+    animation: fadeIn 0.6s ease-in-out;
+    opacity: 1;
+}
+
+li.slide-item:hover .block-social-info {
+    animation: fadeIn 0.6s ease-in-out;
+    opacity: 1;
+}
+
+.hover-buttons .btn {
+    padding: 5px 15px;
+    font-size: 12px;
+}
+
+li.slide-item.slick-current:hover .block-images {
+    transform: scale3d(1.1, 1.1, 1) translate3d(6%, 0, 0) perspective(500px);
+}
+
+li.slide-item .block-images::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(20, 20, 20, 0.4) 50%, rgba(83, 100, 141, 0) 100%);
+    transition: all 0.6s ease 0s;
+}
+
+small,
+.text-small,
+span {
+    font-size: 14px;
+}
+
+a:focus,
+a:hover {
+    color: #FF7628;
+    outline: none;
+}
+
+li.slide-item {
+    position: relative;
+    padding: 0px 10px;
+}
+
+.iq-button.btn {
+    padding: 7px 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background-color: #FF7628;
+    color: white;
+}
+
+.block-images .hover-buttons {
+    margin-top: 5px;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.share {
+    position: relative;
+}
+
+.share-box {
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.75);
+    display: none;
+    position: absolute;
+    width: 105px;
+    top: 3px;
+    right: 40px;
+    left: auto;
+    background-color: #191919;
+    padding: 0 10px;
+    border-radius: 0;
+    text-align: center;
+    z-index: 2;
+    animation: side-in 0.5s forwards;
+    margin-bottom: 10px;
+    transition: all 0.45s ease 0s;
+}
+
+.share:hover .share-box {
+    display: inline-block;
+}
+
+.share-box a {
+    background: transparent !important;
+    color: #d7d3f8 !important;
+    margin-right: 15px;
+
+}
+
+.share-box i {
+    font-size: 15px !important;
+}
+
+.share-box a:hover {
+    color: #FF7628 !important;
+}
+
+.favorites-slider .slick-arrow {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 35px;
+    height: 60px;
+}
+
+.favorites-slider .slick-arrow i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 60px;
+    text-align: center;
+    opacity: 1;
+    z-index: 9;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 0;
+    line-height: 5px;
+    box-shadow: 0 9px 19px #01041b0d;
+    font-size: 0;
+    transform: none;
+    color: #fff;
+    transition: all 0.4s ease-in-out 0s;
+}
+
+.favorites-slider .slick-arrow.slick-disabled {
+    opacity: 0;
+}
+
+.favorites-slider .slick-prev {
+    color: #fff;
+    right: auto;
+    left: 9px;
+    z-index: 9;
+    top: 90px;
+}
+
+.favorites-slider .slick-next {
+    left: auto;
+    color: #fff;
+    right: 6px;
+    z-index: 9;
+    top: 90px;
+}
+
+.favorites-slider .slick-prev::before,
+.favorites-slider .slick-next::before {
+    font-size: 0px;
+}
+
+.favorites-slider .slick-arrow i {
+    font-size: 17px;
+}
+
+/********** Responsividade do NetFlix Cards **********/
+@media (min-width : 1200px) {
+    li.slide-item.slick-active+li.slide-item.slick-active+li.slide-item.slick-active+li.slide-item.slick-active:hover .block-images {
+        transform: scale3d(1.1, 1.1, 1) translate3d(-6%, 0, 0) perspective(500px);
+    }
+}
+
+@media (max-width : 1199px) {
+    li.slide-item.slick-active+li.slide-item.slick-active+li.slide-item.slick-active:hover .block-images {
+        transform: scale3d(1.1, 1.1, 1) translate3d(-6%, 0, 0) perspective(500px);
+    }
+}
+
+@media (max-width : 991px) {
+
+    li.slide-item .block-description .movie-time span,
+    li.slide-item .block-description .ratting-start,
+    .block-description .movie-content li {
+        font-size: 10px;
+    }
+}
+
+@media (max-width : 768px) {
+    li.slide-item .block-images::before {
+        content: none;
+    }
+
+    li.slide-item.slick-current:hover .block-images,
+    li.slide-item:hover .block-images,
+    li.slide-item.slick-active+li.slide-item.slick-active+li.slide-item.slick-active+li.slide-item.slick-active:hover .block-images,
+    li.slide-item.slick-active+li.slide-item.slick-active+li.slide-item.slick-active:hover .block-images {
+        transform: none;
+    }
+
+    .type {
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width : 767px) {
+    .main-title {
+        font-size: 1em;
+    }
+
+    .slick-bg::before {
+        background: linear-gradient(-360deg, rgba(0, 0, 0, 1) 0%, rgba(20, 20, 20, 1) 40%, rgba(83, 100, 141, 0) 100%);
+
+    }
+
+    .favorites-slider .slick-arrow,
+    .favorites-slider .slick-arrow:hover {
+        background: none;
+    }
+
+    .favorites-slider .slick-prev {
+        right: 37px;
+    }
+
+    .image-box img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+}
+
+/********** Responsividade do NetFlix Cards **********/
+/********** NetFlix Cards **********/
+
+/* *************************************************************************** */
+
+/********** Galeria Estabelecimento **********/
+img {
+    max-width: 100%;
+}
+
+.gallery {
+    padding: 30px;
+}
+
+.gallery img {
+    background-color: #ffffff;
+    padding: 8px;
+    width: 100%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+#gallery-modal .modal-img {
+    width: 100%;
+}
+
+/********** Galeria Estabelecimento **********/
+
+/* *************************************************************************** */
+
+/********** Icones de Estabelecimento/Evento **********/
+.containerIcon {
+    display: flex;
+}
+
+.containerIcon2 {
+    display: flex;
+    margin-top: 20px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.icon i {
+    margin-right: 7px;
+    padding: 7px;
+    background-color: #FF7628;
+}
+
+/********** Icones de Estabelecimento/Evento **********/
+
+/* *************************************************************************** */
+
+/********** Agenda do Estabelecimento/Evento **********/
+.containerInfos {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.info-div {
+    height: 200px;
+    overflow: auto;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.info {
+    margin-bottom: 20px;
+    padding: 10px 5px 1px 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.info h3 {
+    margin-top: 0;
+}
+
+/********** Agenda do Estabelecimento/Evento **********/
+
+/* *************************************************************************** */
+
+/********** Carrinho **********/
+#cart-bottom {
+    margin-top: 5%;
+}
+
+#cart-bottom .total>div {
+    border: 1px solid #bdbdbd;
+}
+
+#cart-bottom .total h5 {
+    background-color: #FF7628;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-weight: 700;
+}
+
+#cart-bottom .total div>div {
+    padding: 0 12px;
+}
+
+#cart-bottom .total h6 {
+    color: #2a2a2a;
+}
+
+#cart-bottom .total div>btn {
+    margin: 0 12px 20px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#cart-container table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#cart-container table thead {
+    font-weight: 700;
+}
+
+#cart-container table thead td {
+    background-color: #FF7628;
+    color: white;
+    border: 2px solid #FF7628;
+    padding: 6px 0;
+}
+
+#cart-container table td {
+    border: 1px solid #bdbdbd;
+    text-align: center;
+    padding-top: 20px;
+}
+
+#cart-container table td:nth-child(1) {
+    width: 70%;
+    padding-top: 5px;
+}
+
+#cart-container table td:nth-child(2),
+#cart-container table td:nth-child(4),
+#cart-container table td:nth-child(3) {
+    width: 100%;
+}
+
+#cart-container table td:nth-child(5) {
+    width: 100%;
+    padding-top: 5px;
+}
+
+#cart-container table td:nth-child(5) input {
+    width: 40%;
+}
+
+/********** Carrinho **********/
+
+/* *************************************************************************** */
+
+/********** QR Code **********/
+.wrapper {
+    margin: 7% auto;
+    background: #ffffff;
+    max-width: 410px;
+    border-radius: 7px;
+    padding: 16px 25px;
+    transition: height 0.5s ease;
+}
+
+.wrapper.active {
+    height: 530px;
+}
+
+header h1 {
+    text-align: center;
+    font-weight: 500;
+    font-size: 21px;
+}
+
+header p {
+    text-align: center;
+    margin-top: 5px;
+    color: #474747;
+    font-size: 16px;
+}
+
+.wrapper :where(input, button) {
+    width: 100%;
+    height: 55px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.form button {
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 17px;
+    background: #FF7628;
+}
+
+.wrapper .qr-code {
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    padding: 33px 0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper .img {
+    margin-left: 25%;
+    width: 50%;
+    height: auto;
+}
+
+.wrapper.active .qr-code {
+    opacity: 1;
+    pointer-events: auto;
+    transition: apacity 0.5s ease;
+}
+
+/********** QR Code **********/
+
+/* *************************************************************************** */
+
+/********** Perfil **********/
+.profile-tab-nav {
+    min-width: 250px;
+}
+
+.tab-content {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.nav-pills a.nav-link {
+    padding: 15px 20px;
+    border-radius: 0;
+    color: #333;
+}
+
+.nav-pills a.nav-link i {
+    width: 20px;
+}
+
+.img-circle img {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 5px solid #fff;
+}
+
+/********** Perfil **********/
+
+/* *************************************************************************** */
+
+/********** Cadastro **********/
+.containerCad {
+    max-width: 650px;
+    padding: 28px;
+    margin: 2% auto;
+}
+
+.contentCad {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.input-box {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+.input-box:nth-child(2n) {
+    justify-content: end;
+}
+
+.input-box label {
+    width: 95%;
+    color: #FF7628;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.input-box input {
+    height: 40px;
+    width: 95%;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #FF7628;
+    outline: none;
+}
+
+.input-box input:is(:focus, :valid) {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .02);
+}
+
+.alert p {
+    font-size: 14px;
+    font-style: italic;
+    color: dimgray;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+.button-container {
+    margin: 15px 15px;
+}
+
+.button-container button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    display: block;
+    font-size: 20px;
+    color: white;
+    background-color: #FF7628;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-container button:hover {
+    background-color: #ff5e00;
+}
+
+@media(max-width:600px) {
+    .containerCad {
+        min-width: 280px;
+    }
+
+    .contentCad {
+        max-height: 380px;
+        overflow: auto;
+    }
+
+    .input-box {
+        margin-bottom: 12px;
+        width: 100%;
+    }
+
+    .input-box:nth-child(2n) {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 600px) {
+    .check {
+        width: 10%;
+    }
+}
+
+/********** Cadastro **********/
+
+/* *************************************************************************** */
+
+/********** Imagem Upload **********/
+#picture__input {
+    display: none;
+}
+
+.picture {
+    width: 400px;
+    aspect-ratio: 16/9;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    border: 2px dashed currentcolor;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+}
+
+.picture:hover {
+    color: #777;
+    background: #ccc;
+}
+
+.picture:active {
+    border-color: #ff5e28;
+    color: #FF7628;
+    background: #eee;
+}
+
+.picture:focus {
+    color: #777;
+    background: #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.picture__img {
+    max-width: 100%;
+}
+
+/********** Imagem Upload **********/
+
+/* *************************************************************************** */
+
+/********** Login **********/
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: whitesmoke;
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 40px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    gap: 5px
+}
+
+.areaLogin img {
+    width: 420px;
+}
+
+.formLogin h1 {
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+    font-size: 2.3em;
+}
+
+.formLogin p {
+    display: inline-block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.formLogin input {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: all linear 160ms;
+    outline: none;
+}
+
+.formLogin input:focus {
+    border: 1px solid #ff5e00;
+}
+
+.formLogin label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.formLogin a {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #555;
+    transition: all linear 160ms;
+    text-decoration: none;
+}
+
+.formLogin a:hover {
+    color: #ff5e28;
+}
+
+.btnLogin {
+    background-color: #FF7628;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border: none !important;
+    transition: all linear 160ms;
+    cursor: pointer;
+    margin: 0 !important;
+}
+
+.btnLogin:hover {
+    transform: scale(1.05);
+    background-color: #ff5e00;
+}
+
+.page img {
+    width: 230px;
+    margin-left: 35px;
+    margin-bottom: 10px;
+}
+
+/********** Login **********/
+
+/* *************************************************************************** */
+
+/********** Compra **********/
+.btnCompra {
+    width: 168px;
+    height: 40px;
+    background-color: #FF7628;
+    color: #fff;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.btnCompra:hover {
+    transform: scale(1.05);
+    background-color: #ff5e00;
+    color: white;
+}
+
+/********** Compra **********/
+
+.card {
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    cursor: pointer;
+    width: 310px;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-color: #ff5e00;
+    transition: all .5s;
+    margin: 3px;
+    margin-bottom: 20px;
+}
+
+@media(max-width:600px) {
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
+.card:hover {
+    background-image: linear-gradient(#ff5e00, #ff5e00);
+}
+
+.card img {
+    width: 100000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 270px;
+    background-image: none;
+    background-size: cover;
+    background-position: center;
+    transition: all .5s;
+    z-index: 2;
+    position: relative;
+}
+
+.card .img span {
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: 100;
+    font-style: italic;
+    transition: all.0s;
+}
+
+.card:hover img {
+    width: 0px;
+    opacity: 0%;
+    transition: 0.0s;
+}
+
+.card:hover .img span {
+    font-size: 28px;
+}
+
+.card .content {
+    padding: 0px 0px;
+    height: 0;
+    opacity: 0;
+    transition: all .5s;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    transform: translateY(30px);
+}
+
+.card:hover .content {
+    height: 260px;
+    padding: 20px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card .content p {
+    margin: 0;
+}
+
+.card .content .title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card .content .desc {
+    font-size: 14px;
+    font-weight: 100;
+    opacity: .8;
+    margin-top: 10px;
+}
+
+.card .arrow {
+    padding: 1px;
+    transform: rotate(-180deg);
+    transition: all .5s;
+}
+
+.card:hover .arrow {
+    transform: rotate(0);
+}
+
+.card .arrow span {
+    font-size: 24px;
+}
+
+a .card {
+    color: white;
+}
+
+.container a {
+    text-decoration: none;
+    cursor: default;
+}
+
+.espaco {
+    margin: 10%;
+}
+
+@media(max-width:600px) {
+    .espaco {
+        margin: 20%;
+    }
+}
+
+.pagination {
+    margin-left: 40%;
+}
+
+@media(max-width:600px) {
+    .pagination {
+        margin-left: 25%;
+    }
+}
+
+/********** Compra **********/

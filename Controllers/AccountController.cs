@@ -26,7 +26,7 @@ namespace QueroBar.Controllers
         {
             if (ModelState.IsValid)
             {
-                var findUser = await db.Users.FirstOrDefaultAsync(p => p.email == login.Email);
+                var findUser = await db.Users.FirstOrDefaultAsync(p => p.Email == login.Email);
                 return RedirectToAction("Index", "Home");
             }
             return View();
@@ -36,13 +36,13 @@ namespace QueroBar.Controllers
         public IActionResult Register(User newuser)
         {
             User user = new User();
-            user.name = newuser.name;
-            user.email = newuser.email;
-            user.password = newuser.password;
-            user.status = (User.UserStatus)1;
-            user.phone = newuser.phone;
-            user.membership_id = 1;
-            user.creationDate = DateTime.Now;
+            user.Name = newuser.Name;
+            user.Email = newuser.Email;
+            user.Password = newuser.Password;
+            user.Status = (User.UserStatus)1;
+            user.Phone = newuser.Phone;
+            user.Membership_Id = 1;
+            user.CreationDate = DateTime.Now;
 
             db.Users.Add(user);
             db.SaveChanges();
@@ -53,9 +53,9 @@ namespace QueroBar.Controllers
         public IActionResult Edit(User newuser)
         {
             User user = new User();
-            user.name = newuser.name;  
-            user.email = newuser.email;   
-            user.password = newuser.password;
+            user.Name = newuser.Name;
+            user.Email = newuser.Email;
+            user.Password = newuser.Password;
             return View();
         }
     }
