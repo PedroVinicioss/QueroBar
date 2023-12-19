@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace QueroBar.Models.Entities
 {
@@ -15,6 +16,11 @@ namespace QueroBar.Models.Entities
         [StringLength(50)]
         [EmailAddress]
         public string email { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        [PasswordPropertyText]
+        public string password { get; set; }
 
         [Required]
         [StringLength(50)]
