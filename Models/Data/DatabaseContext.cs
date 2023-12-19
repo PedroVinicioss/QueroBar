@@ -14,7 +14,6 @@ namespace QueroBar.Models.Data
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Administrador> Administradors { get; set; }
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartProduct> CartProducts { get; set; }
