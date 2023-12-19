@@ -12,33 +12,34 @@ namespace QueroBar.Models.Entities
 
         [Required]
         [StringLength(150)]
-        public string name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [StringLength(50)]
         [EmailAddress]
-        public string email { get; set; }
+        public string? email { get; set; }
 
         [Required]
         [StringLength(50)]
         [PasswordPropertyText]
-        public string password { get; set; }
+        public string? Password { get; set; }
 
         [Required]
         [StringLength(50)]
         [Phone]
-        public string? phone { get; set; }
+        public string? Phone { get; set; }
 
-        public string? pic { get; set; }
+        public string? Pic { get; set; }
         
         [EnumDataType(typeof(UserStatus))]
-        public UserStatus status { get; set; }
-        public enum UserStatus { Inativo = 0, Ativo = 1}
-        public int? membership_id { get; set; }
-        [ForeignKey("membership_id")]
+        public UserStatus Status { get; set; }
+        public enum UserStatus { Inativo = 0, Ativo = 1 }
+
+        public int? Membership_Id { get; set; }
+        [ForeignKey("Membership_Id")]
         public virtual Memberships? Membership { get; set; }
 
-        public DateTime? creationDate { get; set; }
+        public DateTime? CreationDate { get; set; }
 
     }
 }

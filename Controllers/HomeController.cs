@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QueroBar.Models;
 using QueroBar.Models.Data;
+using QueroBar.Models.ViewModels;
 using System.Diagnostics;
 
 namespace QueroBar.Controllers

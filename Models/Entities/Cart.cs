@@ -8,18 +8,19 @@ namespace QueroBar.Models.Entities
         [Key]
         public int Id { get; set; }
 
-        public float? sub_total { get; set; }
+        public float? Total { get; set; }
 
-        public float? total { get; set; }
+        public float? SubTotal { get; set; }
 
         [NotMapped]
-        public string? total_formatted { get; set; }
+        public string? TotalFormatted { get; set; }
 
-        public int? User_id { get; set; }
+        public int? User_Id { get; set; }
 
         public int? Status { get; set; }
 
-        [ForeignKey("User_id")]
+
+        [ForeignKey("User_Id")]
         public virtual User? User { get; set; }
         public virtual List<CartProduct>? Products { get; set; }
         public virtual List<PurchaseFinalize>? Finalizes { get; set; }

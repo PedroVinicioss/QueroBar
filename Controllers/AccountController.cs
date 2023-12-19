@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QueroBar.Models.Data;
 using QueroBar.Models.Entities;
+using QueroBar.Models.ViewModels;
+using System.Data.Entity;
 using System.Runtime.Intrinsics.X86;
 
 namespace QueroBar.Controllers
@@ -13,13 +15,25 @@ namespace QueroBar.Controllers
             db = _dbContext;
         }
 
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
 
+
         [HttpPost]
-        public IActionResult Create(User newuser)
+        public async Task<IActionResult> Login(LoginViewModel login)
+        {
+            if (ModelState.IsValid)
+            {
+                var findUser = await db.Users.FirstOrDefaultAsync(p => p.email == login.Email);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(User newuser)
         {
             User user = new User();
             user.name = newuser.name;

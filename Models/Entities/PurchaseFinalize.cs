@@ -7,12 +7,14 @@ namespace QueroBar.Models.Entities
     {
         [Key] 
         public int Id { get; set; }
-        [StringLength(100)]
-        public string? purchaseCode { get; set; }
-        public DateTime? creationDate { get; set; }
 
-        public int Cart_Id { get; set; }
+        [StringLength(100)]
+        public string? PurchaseCode { get; set; }
+
+        public DateTime? CreationDate { get; set; }
+
+        public int? Cart_Id { get; set; }
         [ForeignKey("Cart_Id")]
-        public virtual Cart Cart { get; set; }
+        public virtual Cart? Cart { get; set; }
     }
 }

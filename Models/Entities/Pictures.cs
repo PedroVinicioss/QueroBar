@@ -9,14 +9,14 @@ namespace QueroBar.Models.Entities
         public int Id { get; set; }
         [Required]
         [StringLength(150)]
-        public string pic { get; set; }
-        public DateTime? creationDate { get; set; }
+        public string? Pic { get; set; }
+        public DateTime? CreationDate { get; set; }
 
-        public int? pub_id { get; set; }
-        [ForeignKey("pub_id")]
+        public int? Pub_Id { get; set; }
+        [ForeignKey("Pub_Id")]
         public virtual Pub? Pub { get; set; }
-        public int? event_id { get; set; }
-        [ForeignKey("event_id")]
+        public int? Event_Id { get; set; }
+        [ForeignKey("Event_Id")]
         public virtual Events? Event { get; set; }
     }
 }

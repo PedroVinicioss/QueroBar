@@ -7,8 +7,8 @@ namespace QueroBar.Models.Entities
         [Key] 
         public int Id { get; set; }
         [StringLength(50)]
-        public string name { get; set; }
-        public DateTime? creationDate { get; set; }
+        public string? Name { get; set; }
+        public DateTime? CreationDate { get; set; }
 
     }
 }

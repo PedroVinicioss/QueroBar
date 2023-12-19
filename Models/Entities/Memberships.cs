@@ -7,11 +7,13 @@ namespace QueroBar.Models.Entities
     {
         [Key]
         public int Id { get; set; }
+
         [StringLength(75)]
-        public string name { get; set; }
-        public string? cor { get; set; }
+        public string? Name { get; set; }
+
+        public string? Color { get; set; }
 
         [StringLength(250)]
-        public string? description { get; set; }
+        public string? Description { get; set; }
     }
 }

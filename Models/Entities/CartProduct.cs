@@ -8,16 +8,16 @@ namespace QueroBar.Models.Entities
         [Key]
         public int Id { get; set; }
 
-        public int? User_id { get; set; }
-        [ForeignKey("User_id")]
+        public int? User_Id { get; set; }
+        [ForeignKey("User_Id")]
         public virtual User? User { get; set; }
 
-        public int? Event_id { get; set; }
-        [ForeignKey("Event_id")]
+        public int? Event_Id { get; set; }
+        [ForeignKey("Event_Id")]
         public virtual Events? Event { get; set; }
 
-        public int? Ticket_id { get; set; }
-        [ForeignKey("Ticket_id")]
+        public int? Ticket_Id { get; set; }
+        [ForeignKey("Ticket_Id")]
         public virtual Ticket? Ticket { get; set; }
 
         [NotMapped]
