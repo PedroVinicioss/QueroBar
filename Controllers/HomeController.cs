@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QueroBar.Models;
+using QueroBar.Models.Data;
+using QueroBar.Models.ViewModels;
 using System.Diagnostics;
 
 namespace QueroBar.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private DatabaseContext db;
+        public HomeController(DatabaseContext _dbContext)
         {
-            _logger = logger;
+            db = _dbContext;
         }
 
         public IActionResult Index()

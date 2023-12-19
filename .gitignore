@@ -1,0 +1,11 @@
+
+*.dll
+*.so
+*.vsidx
+*.dylib
+*.cache
+*.props
+*.v2
+*.bin
+*.exe
+*.json
