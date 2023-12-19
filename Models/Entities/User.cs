@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 
 namespace QueroBar.Models.Entities
 {
@@ -29,9 +30,11 @@ namespace QueroBar.Models.Entities
 
         public string? pic { get; set; }
         
-        [EnumDataType(typeof(UserType))]
-        public UserType type { get; set; }
-        public enum UserType { administrador = 0, pub = 1, client = 2}
+        [EnumDataType(typeof(UserStatus))]
+        public UserStatus status { get; set; }
+        public enum UserStatus { Inativo = 0, Ativo = 1}
+
+        public virtual Memberships? Membership { get; set; }
 
         public DateTime? creationDate { get; set; }
 

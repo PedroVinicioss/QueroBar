@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using QueroBar.Models;
 using QueroBar.Models.Data;
-using QueroBar.Models.Entities;
 using System.Diagnostics;
 
 namespace QueroBar.Controllers
@@ -18,15 +17,6 @@ namespace QueroBar.Controllers
 
         public IActionResult Index()
         {
-            User user = new User();
-            user.name = "Pedro";
-            user.email = "Pedro@gmail.com";
-            user.password = "12345";
-            user.type = (User.UserType)2;
-            user.phone = "";
-            user.creationDate = DateTime.Now;
-
-            db.SaveChanges();
             return View();
         }
 

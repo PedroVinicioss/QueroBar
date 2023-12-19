@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QueroBar.Models.Data;
 using QueroBar.Models.Entities;
+using System.Runtime.Intrinsics.X86;
 
 namespace QueroBar.Controllers
 {
@@ -21,13 +22,14 @@ namespace QueroBar.Controllers
         public IActionResult Create(User newuser)
         {
             User user = new User();
-            user.name = "Pedro";
-            user.email = "Pedro@gmail.com";
-            user.password = "12345";
-            user.type = (User.UserType)2;
-            user.phone = "";
+            user.name = newuser.name;
+            user.email = newuser.email;
+            user.password = newuser.password;
+            user.status = (User.UserStatus)1;
+            user.phone = newuser.phone;
             user.creationDate = DateTime.Now;
 
+            db.Users.Add(user);
             db.SaveChanges();
             return View();
         }
