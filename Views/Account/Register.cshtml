@@ -1,0 +1,50 @@
+﻿@model QueroBar.Models.ViewModels.RegisterViewModel
+
+
+<div class="container-xxl bg-white p-0">
+    <!-- Spinner de carregamento -->
+    <div id="spinner"
+         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Carregando...</span>
+        </div>
+    </div>
+    <!-- Spinner de carregamento -->
+</div>
+
+<!-- *************************************************************************** -->
+<!-- Formulário -->
+<div class="page">
+    <div class="containerCad shadow-lg">
+        <form method="post" EncType="multipart/form-data" action="/Account/Register">
+            <h2>Cadastro</h2>
+            <hr>
+            <span asp-validation-for="Error" class="text-danger"></span>
+            <div class="contentCad">
+                <div class="input-box">
+                    <label asp-for="Name" class="control-label">Nome Completo</label>
+                    <input asp-for="Name" name="Name" class="form-control" type="text" placeholder="Insira o nome">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="input-box">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" name="email" class="form-control" type="email" placeholder="Insira o Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="input-box">
+                    <label asp-for="Password" class="control-label">Senha</label>
+                    <input asp-for="Password" name="Password" class="form-control" type="password" placeholder="Insira a senha">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="input-box">
+                    <label asp-for="Phone" class="control-label">Celular/Telefone</label>
+                    <input asp-for="Phone" name="Phone" class="form-control" type="tel" placeholder="Insira o telefone de contato" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="button-container">
+                    <button formaction="~/Account/Register" type="submit">Concluir</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

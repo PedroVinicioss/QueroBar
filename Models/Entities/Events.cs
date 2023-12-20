@@ -12,6 +12,11 @@ namespace QueroBar.Models.Entities
         [Required]
         [StringLength(150)]
         public string? Name { get; set; }
+        public float? Price { get; set; }
+
+        [Required]
+        [StringLength(300)]
+        public string? Description { get; set; }
 
         public DateTime? OpeningTime { get; set; }
         public DateTime? ClosingTime { get; set; }

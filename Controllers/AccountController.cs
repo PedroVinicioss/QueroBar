@@ -31,21 +31,36 @@ namespace QueroBar.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
 
         [HttpPost]
-        public IActionResult Register(User newuser)
+        public IActionResult Register(RegisterViewModel newuser)
         {
-            User user = new User();
-            user.Name = newuser.Name;
-            user.Email = newuser.Email;
-            user.Password = newuser.Password;
-            user.Status = (User.UserStatus)1;
-            user.Phone = newuser.Phone;
-            user.Membership_Id = 1;
-            user.CreationDate = DateTime.Now;
+            if(ModelState.IsValid)
+            {
+                User user = new User
+                {
+                    Name = newuser.Name,
+                    Email = newuser.Email,
+                    Password = newuser.Password,
+                    Status = (User.UserStatus)1,
+                    Phone = newuser.Phone,
+                    Membership_Id = 2,
+                    CreationDate = DateTime.Now
+                };
 
-            db.Users.Add(user);
-            db.SaveChanges();
+                db.Users.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("Error", "Todos os campos são obrigatórios.");
+            }
             return View();
         }
 

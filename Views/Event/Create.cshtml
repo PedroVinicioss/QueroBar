@@ -1,0 +1,102 @@
+﻿@model QueroBar.Models.Entities.Events
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@using (Html.BeginForm("Create", "Events", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+        <div class="container-xxl bg-white p-0">
+            <!-- Spinner de carregamento -->
+            <div id="spinner"
+                 class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Carregando...</span>
+                </div>
+            </div>
+            <!-- Spinner de carregamento -->
+        </div>
+
+
+        <!-- Formulário -->
+        <div>
+            <div class="containerCad shadow-lg">
+                <form asp-action="Create">
+                    <h2>Cadastro do Evento</h2>
+                    <hr>
+                    <div class="contentCad">
+                        <div class="input-box">
+                            <label asp-for="Name" class="control-label">Nome</label>
+                            <input asp-for="Name" type="text" class="form-control" placeholder="Insira o nome do evento">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="input-box">
+                            <label asp-for="Genres" class="control-label">Gênero</label>
+                            <select asp-for="Genres" class="form-control" placeholder="Gênero">
+                                <option>Axé</option>
+                                <option>Eletrônica</option>
+                                <option>Forró</option>
+                                <option>Funk</option>
+                                <option>MPB</option>
+                                <option>Pagode</option>
+                                <option>Rap</option>
+                                <option>Rock</option>
+                                <option>Samba</option>
+                                <option>Sertanejo</option>
+                            </select>
+                            <span asp-validation-for="Genres" class="text-danger"></span>
+                        </div>
+                        <div class="input-box">
+                            <label asp-for="Capacity" class="control-label">Lotação</label>
+                            <input asp-for="Capacity" class="form-control" type="number" min="1" max="1000" placeholder="Insira a lotação">
+                        </div>
+                        <div class="input-box">
+                            <label class="control-label">Tipo</label>
+                            <select class="form-control" placeholder="Selecione o tipo de evento">
+                                <option>
+                                    Musical
+                                </option>
+                                <option>
+                                    Diversos
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-box">
+                            <label asp-for="OpeningTime" class="control-label">Horário de Início</label>
+                            <input asp-for="OpeningTime" class="form-control" placeholder="Insira o horário de início do evento" />
+                            <span asp-validation-for="OpeningTime" class="text-danger"></span>
+                        </div>
+                        <div class="input-box">
+                            <label asp-for="ClosingTime" class="control-label">Horário de Término</label>
+                            <input asp-for="ClosingTime" class="form-control" placeholder="Insira o horário de término do evento" />
+                            <span asp-validation-for="ClosingTime" class="text-danger"></span>
+                        </div>
+                        <div class="input-box">
+                            <label asp-for="Price" class="control-label">Preço</label>
+                            <input asp-for="Price" type="number" min="0" class="form-control" placeholder="Insira o preço do ingresso" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="input-box">
+                            <label asp-for="Description" class="control-label">Descrição</label>
+                            <input asp-for="Description" style="height:100px" class="form-control" placeholder="Escreva uma descrição para o evento" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="input-box check d-inline-block">
+                            <label>Destaque</label><input style="width: 20px;" type="checkbox" />
+                        </div>
+                        <div class="button-container">
+                            <button type="submit">Concluir</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Formulário -->
+
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

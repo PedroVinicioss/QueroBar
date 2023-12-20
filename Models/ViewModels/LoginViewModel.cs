@@ -15,5 +15,8 @@ namespace QueroBar.Models.ViewModels
         public string? Password { get; set; }
 
         public bool rememberMe { get; set; }
+
+        public string? Error { get; set; }
+
     }
 }

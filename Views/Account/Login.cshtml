@@ -1,0 +1,23 @@
+﻿<div class="container-xxl bg-white p-0">
+    <!-- Spinner Start -->
+    <div id="spinner"
+         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+</div>
+
+<div class="page">
+    <form action="/Login/login" method="post" class="formLogin">
+        <img src="/img/QueroBarLogo.png" alt="">
+        <p>Digite os seus dados de acesso nos campos abaixo.</p>
+        <label for="email">E-mail</label>
+        <input type="email" name="usuario" placeholder="Digite seu e-mail" autofocus />
+        <label for="password">Senha</label>
+        <input type="password" name="senha" placeholder="Digite seu senha" />
+        <a asp-controller="Clientes" asp-action="Create" class="nav-item nav-link">Criar Conta</a>
+        <input type="submit" value="Acessar" class="btn" />
+    </form>
+</div>

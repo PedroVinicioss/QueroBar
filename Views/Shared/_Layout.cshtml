@@ -47,13 +47,14 @@
                 }
                 else
                 {
-                    <a asp-controller="Login" asp-action="login" class="nav-item nav-link">Login</a>
+                    <a asp-controller="Account" asp-action="login" class="nav-item nav-link">Login</a>
                 }
             </div>
             <a class="btn btn-outline btn-social pt-4" asp-controller="Carrinhos" asp-action="Index"><i class="fas fa-shopping-cart"></i></a>
             <a class="btn btn-outline btn-social pt-4" asp-controller="Clientes" asp-action="Index"><i class="fas fa-user"></i></a>
         </div>
     </nav>
+
     @RenderBody()
     <!-- Footer -->
     <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">

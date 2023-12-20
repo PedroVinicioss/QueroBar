@@ -53,3 +53,10 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+*.cache
+*.cache
+*.json
+*.json
+*.cache
+*.props
+*.csproj

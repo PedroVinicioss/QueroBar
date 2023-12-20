@@ -9,8 +9,6 @@ namespace QueroBar.Models.Entities
         [Key] 
         public int Id { get; set; }
 
-        public float? Price { get; set; }
-
         [StringLength(100)]
         public string? VoucherCode { get; set; }
 
