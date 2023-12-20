@@ -1,8 +1,17 @@
 ﻿@model QueroBar.Models.Entities.User
 @inject QueroBar.Models.Data.DatabaseContext db
+@using System.Security.Claims;
 
 @{
     var memberships = db.Memberships.ToList();
+
+    var userClaims = User.Claims;
+
+    var emailClaim = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+    string email = emailClaim?.Value;
+
+    var user = db.Users.Where(x => x.Email == email).FirstOrDefault();
+    
 }
 
 <!-- Spinner de carregamento -->
@@ -45,36 +54,36 @@
             <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
                     <h3 class="mb-4">Dados da conta</h3>
-                    <form method="post" asp-controller="Account" asp-action="Edit">
+                    <form method="post" asp-controller="Account" asp-action="Perfil">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input type="text" class="form-control" name="Name" value="@Model.Name">
+                                    <input asp-for="Name" type="text" class="form-control" name="Name" value="@user.Name">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>E-mail</label>
-                                    <input type="text" class="form-control" name="Email" value="@Model.Email">
+                                    <input asp-for="Email" type="text" class="form-control" name="Email" value="@user.Email">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Celular</label>
-                                    <input type="text" class="form-control" name="Phone" value="@Model.Phone">
+                                    <input asp-for="Phone" type="text" class="form-control" name="Phone" value="@user.Phone">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Tipo de Conta</label>
-                                    <select class="form-control border-0" name="Membership_Id">
+                                    <select asp-for="Membership_Id" class="form-control border-0" name="Membership_Id">
                                         <option selected>Categoria</option>
                                         @foreach (var membership in memberships)
                                         {
                                             if (membership.Name != "Administrador")
                                             {
-                                                <option value="@membership.Id" selected="@(membership.Id == Model.Membership_Id ? "selected" : null)">
+                                                <option value="@membership.Id" selected="@(membership.Id == @user.Membership_Id ? "selected" : null)">
                                                     @membership.Name
                                                 </option>
                                             }

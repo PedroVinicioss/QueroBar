@@ -22,5 +22,7 @@ namespace QueroBar.Models.ViewModels
 
         public string? Error { get; set; }
 
+        public int? Membership { get; set; }
+
     }
 }

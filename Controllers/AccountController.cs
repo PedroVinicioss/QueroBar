@@ -144,14 +144,48 @@ namespace QueroBar.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(User newuser)
+        public async Task<IActionResult> PerfilAsync(User newuser)
         {
-            User user = new User();
-            user.Name = newuser.Name;
-            user.Email = newuser.Email;
-            user.Password = newuser.Password;
-            return View();
+            ClaimsPrincipal claimUser = HttpContext.User;
+
+            if (!claimUser.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Account");
+            else
+            {
+                var userClaims = User.Claims.ToList();
+
+                var emailClaim = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                string email = emailClaim?.Value;
+
+                User user = db.Users.FirstOrDefault(x => x.Email == email);
+                if (user != null)
+                {
+                    user.Name = newuser.Name;
+                    user.Email = newuser.Email;
+                    user.Phone = newuser.Phone;
+                    user.Membership_Id = newuser.Membership_Id;
+
+                    db.Users.Update(user);
+                    db.SaveChanges();
+
+                    var roleClaim = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
+
+                    if (roleClaim != null)
+                    {
+                        userClaims.Remove(roleClaim);
+                    }
+
+                    userClaims.Add(new Claim(ClaimTypes.Role, user.Membership.Name));
+
+                    var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claimsIdentity), new AuthenticationProperties());
+                }
+                return View();
+            }
         }
+
 
         [HttpGet] 
         public ActionResult Perfil() {
