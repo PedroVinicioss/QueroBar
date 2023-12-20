@@ -100,9 +100,8 @@
                             </div>
                             <div class="favorite-contens">
                                 <ul class="favorites-slider list-inline row p-0 mb-0">
-                                    @if (Model != null)
-                                    {
-                                        foreach (var evento in events)
+
+                                        @foreach (var evento in events)
                                         {
                                             <li class="slide-item">
                                                 <div class="block-images position-relative">
@@ -133,7 +132,7 @@
                                                 </div>
                                             </li>
                                         }
-                                    }
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -157,23 +156,22 @@
                             </div>
                             <div class="favorite-contens">
                                 <ul class="favorites-slider list-inline row p-0 mb-0">
-                                    @if (Model != null)
-                                    {
-                                        foreach (var evento in Model.Populares)
+
+                                        @foreach (var evento in events)
                                         {
                                             <li class="slide-item">
                                                 <div class="block-images position-relative">
                                                     <div class="img-box">
-                                                        <img src="@Url.Action("ImagemDestaque", "Img", new { id = evento.Id })" style="width:100%; height:175px" class="img-fluid" alt="" />
+                                                        <img src="@evento.Path" style="width:100%; height:175px" class="img-fluid" alt="" />
                                                     </div>
                                                     <div class="block-description">
                                                         <h6 class="iq-title">
-                                                            <a href="Eventos"> @evento.Nome </a>
+                                                            <a href="Eventos"> @evento.Name </a>
                                                         </h6>
                                                         <div class="movie-time d-flex align-items-center my-2">
                                                             <div class="badge badge-secondary p-1 mr-2">+18</div>
                                                             <span class="text-white" style="margin-left: 5px;">
-                                                                @evento.NomeBar
+                                                                @evento.Pub.User.Name
                                                             </span>
                                                         </div>
                                                         <a asp-action="Index"
@@ -190,7 +188,7 @@
                                                 </div>
                                             </li>
                                         }
-                                    }
+
                                 </ul>
                             </div>
                         </div>
