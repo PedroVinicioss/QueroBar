@@ -9,6 +9,7 @@
 *.bin
 *.exe
 *.json
+*.obj
 
 *.swp
 *.*~
