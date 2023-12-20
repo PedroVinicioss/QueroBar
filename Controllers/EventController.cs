@@ -63,9 +63,9 @@ namespace QueroBar.Controllers
 
                         if (createEvent.ImageFile != null)
                         {
-                            path = Functions.WriteFile(createEvent.ImageFile, user.Id);
+                            path = Functions.WriteFile(createEvent.ImageFile, user.Id, user.Name);
                             var fileName = Path.GetFileName(path);
-                            name = "images/" + user.Id + "/" + fileName;
+                            name = "images/" + user.Id + "_" + user.Name + "/" + fileName;
                             events.Path = name;
                         }
 

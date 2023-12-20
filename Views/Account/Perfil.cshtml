@@ -1,0 +1,209 @@
+﻿@model QueroBar.Models.Entities.User
+@inject QueroBar.Models.Data.DatabaseContext db
+
+@{
+    var memberships = db.Memberships.ToList();
+}
+
+<!-- Spinner de carregamento -->
+<div id="spinner"
+     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Carregando...</span>
+    </div>
+</div>
+<!-- Spinner de carregamento -->
+<!-- *************************************************************************** -->
+<!-- Perfil -->
+<section class="py-5 my-5">
+    <div class="container">
+        <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+            <div class="profile-tab-nav border-right">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab"
+                       aria-controls="account" aria-selected="true">
+                        <i class="fa fa-home text-center mr-1"></i>
+                        Conta
+                    </a>
+                    <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab"
+                       aria-controls="password" aria-selected="false">
+                        <i class="fa fa-key text-center mr-1"></i>
+                        Senha
+                    </a>
+                    <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab"
+                       aria-controls="security" aria-selected="false">
+                        <i class="fa fa-user text-center mr-1"></i>
+                        Segurança
+                    </a>
+                    <a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab"
+                       aria-controls="notification" aria-selected="false">
+                        <i class="fa fa-bell text-center mr-1"></i>
+                        Notificações
+                    </a>
+                </div>
+            </div>
+            <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                    <h3 class="mb-4">Dados da conta</h3>
+                    <form method="post" asp-controller="Account" asp-action="Edit">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nome</label>
+                                    <input type="text" class="form-control" name="Name" value="@Model.Name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>E-mail</label>
+                                    <input type="text" class="form-control" name="Email" value="@Model.Email">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Celular</label>
+                                    <input type="text" class="form-control" name="Phone" value="@Model.Phone">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tipo de Conta</label>
+                                    <select class="form-control border-0" name="Membership_Id">
+                                        <option selected>Categoria</option>
+                                        @foreach (var membership in memberships)
+                                        {
+                                            if (membership.Name != "Administrador")
+                                            {
+                                                <option value="@membership.Id" selected="@(membership.Id == Model.Membership_Id ? "selected" : null)">
+                                                    @membership.Name
+                                                </option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+                    <h3 class="mb-4">Senha</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Senha Atual</label>
+                                <input type="password" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nova Senha</label>
+                                <input type="password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Confirme a Nova Senha</label>
+                                <input type="password" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-light me-1">Cancelar</button>
+                        <button class="btn btn-primary">Concluir</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                    <h3 class="mb-4">Security Settings</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Login</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Two-factor auth</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="recovery">
+                                    <label class="form-check-label" for="recovery">
+                                        Recovery
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
+                    <h3 class="mb-4">Application Settings</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="app-check">
+                                    <label class="form-check-label" for="app-check">
+                                        App check
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                                    <label class="form-check-label" for="defaultCheck2">
+                                        Lorem ipsum dolor sit.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary">Update</button>
+                        <button class="btn btn-light">Cancel</button>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
+                    <h3 class="mb-4">Notificações</h3>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="notification1">
+                            <label class="form-check-label" for="notification1">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum accusantium
+                                accusamus, neque cupiditate quis
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="notification2">
+                            <label class="form-check-label" for="notification2">
+                                hic nesciunt repellat perferendis voluptatum totam porro eligendi.
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="notification3">
+                            <label class="form-check-label" for="notification3">
+                                commodi fugiat molestiae tempora corporis. Sed dignissimos suscipit
+                            </label>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-light me-1">Cancelar</button>
+                        <button class="btn btn-primary">Concluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

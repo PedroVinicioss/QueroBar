@@ -5,9 +5,9 @@ namespace QueroBar.Util
 {
     public class Functions
     {
-        public static string WriteFile(IFormFile img, int user_Id)
+        public static string WriteFile(IFormFile img, int user_Id, string user_name)
         {
-            string caminhoCompleto = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images", user_Id.ToString());
+            string caminhoCompleto = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\images", user_Id + "_" + user_name.ToString());
 
             if (!Directory.Exists(caminhoCompleto))
             {

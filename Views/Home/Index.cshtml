@@ -1,10 +1,10 @@
 ﻿@using QueroBar.Models.Entities;
-@inject QueroBar.Models.Data.DatabaseContext dbContext
+@inject QueroBar.Models.Data.DatabaseContext db
 
 @{
     ViewData["Title"] = "Home Page";
-    var categorias = dbContext.Categories.ToList();
-    var events = dbContext.Events.ToList();
+    var categorias = db.Categories.ToList();
+    var events = db.Events.ToList();
 }
 
 <div class="container-xxl bg-white p-0">

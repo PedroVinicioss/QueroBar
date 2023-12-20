@@ -7,6 +7,7 @@ using System.Runtime.Intrinsics.X86;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 
 namespace QueroBar.Controllers
 {
@@ -74,7 +75,7 @@ namespace QueroBar.Controllers
         public async Task<IActionResult> LogOut()
         {   
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -150,6 +151,26 @@ namespace QueroBar.Controllers
             user.Email = newuser.Email;
             user.Password = newuser.Password;
             return View();
+        }
+
+        [HttpGet] 
+        public ActionResult Perfil() {
+
+            ClaimsPrincipal claimUser = HttpContext.User;
+
+            if (!claimUser.Identity.IsAuthenticated)
+                return RedirectToAction("Login", "Account");
+            else
+            {
+                var userClaims = User.Claims;
+
+                var emailClaim = userClaims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                string email = emailClaim?.Value;
+
+                var user = db.Users.Where(x => x.Email == email).FirstOrDefault();
+
+                return View(user);
+            }
         }
     }
 }
