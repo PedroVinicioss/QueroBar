@@ -1,7 +1,11 @@
-﻿@model QueroBar.Models.Entities.Events
+﻿@model QueroBar.Models.ViewModels.CreateEventViewModel
+@using QueroBar.Models.Entities;
+@inject QueroBar.Models.Data.DatabaseContext dbContext
 
 @{
     ViewData["Title"] = "Create";
+    var categorias = dbContext.Categories.ToList();
+    var generos = dbContext.Genres.ToList();
 }
 
 @using (Html.BeginForm("Create", "Events", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -22,9 +26,12 @@
         <!-- Formulário -->
         <div>
             <div class="containerCad shadow-lg">
-                <form asp-action="Create">
+
+            <form method="post" asp-controller="Event" asp-action="Create">
                     <h2>Cadastro do Evento</h2>
                     <hr>
+                <span asp-validation-for="Error" class="text-danger"></span>
+
                     <div class="contentCad">
                         <div class="input-box">
                             <label asp-for="Name" class="control-label">Nome</label>
@@ -32,20 +39,13 @@
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                         <div class="input-box">
-                            <label asp-for="Genres" class="control-label">Gênero</label>
-                            <select asp-for="Genres" class="form-control" placeholder="Gênero">
-                                <option>Axé</option>
-                                <option>Eletrônica</option>
-                                <option>Forró</option>
-                                <option>Funk</option>
-                                <option>MPB</option>
-                                <option>Pagode</option>
-                                <option>Rap</option>
-                                <option>Rock</option>
-                                <option>Samba</option>
-                                <option>Sertanejo</option>
+                            <label class="control-label">Gênero</label>
+                            <select asp-for="Category" class="form-control" placeholder="Categorias">
+                                @foreach (var category in categorias)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
                             </select>
-                            <span asp-validation-for="Genres" class="text-danger"></span>
                         </div>
                         <div class="input-box">
                             <label asp-for="Capacity" class="control-label">Lotação</label>
@@ -53,13 +53,11 @@
                         </div>
                         <div class="input-box">
                             <label class="control-label">Tipo</label>
-                            <select class="form-control" placeholder="Selecione o tipo de evento">
-                                <option>
-                                    Musical
-                                </option>
-                                <option>
-                                    Diversos
-                                </option>
+                            <select asp-for="Genre" class="form-control" placeholder="Selecione o Gênero do evento">
+                                @foreach (var genero in generos)
+                                {
+                                    <option value="@genero.Id">@genero.Name</option>
+                                }
                             </select>
                         </div>
                         <div class="input-box">
@@ -83,9 +81,12 @@
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
 
-                        <div class="input-box check d-inline-block">
-                            <label>Destaque</label><input style="width: 20px;" type="checkbox" />
+                        <div class="input-box">
+                            <label asp-for="ImageFile" class="control-label">Imagem do Evento</label>
+                            <input asp-for="ImageFile" type="file" class="form-control" accept="image/*">
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
                         </div>
+
                         <div class="button-container">
                             <button type="submit">Concluir</button>
                         </div>

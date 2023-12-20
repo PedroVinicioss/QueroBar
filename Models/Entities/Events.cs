@@ -25,15 +25,25 @@ namespace QueroBar.Models.Entities
         public int? Capacity { get; set; }
         public int? TicketsSold { get; set; }
 
-        public virtual List<Genre>? Genres { get; set; }
         public virtual List<Ticket>? Tickets { get; set; }
         public virtual List<Artist>? Artists { get; set; }
-        public virtual List<Category>? Categories { get; set; }
 
+        public int Category_id { get; set; }
+        [ForeignKey("Category_id")]
+        public virtual Category? Category { get; set; }
+
+        public int Genre_id { get; set; }
+        [ForeignKey("Genre_id")]
+        public virtual Genre? Genre { get; set; }
 
         public int Pub_Id { get; set; }
         [ForeignKey("Pub_Id")]
         public virtual Pub? Pub { get; set; }
+
+        [NotMapped] // Esta propriedade não será mapeada para o banco de dados
+        public IFormFile ImageFile { get; set; }
+
+        public string Path { get; set; }
 
     }
 }

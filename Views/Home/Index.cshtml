@@ -1,7 +1,10 @@
-﻿
+﻿@using QueroBar.Models.Entities;
+@inject QueroBar.Models.Data.DatabaseContext dbContext
+
 @{
     ViewData["Title"] = "Home Page";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var categorias = dbContext.Categories.ToList();
+    var events = dbContext.Events.ToList();
 }
 
 <div class="container-xxl bg-white p-0">
@@ -18,20 +21,19 @@
 
     <div class="container-fluid p-0">
         <div class="owl-carousel header-carousel position-relative">
-            @if (Model != null)
-            {
-                foreach (var evento in Model.Eventos)
+
+                @foreach (var evento in events)
                 {
                     <div class="owl-carousel-item position-relative">
-                        <img src="@Url.Action("ImagemDestaque", "Img", new { id = evento.Id })" style="width:100%; height:750px" class="img-fluid" alt="" />
+                        <img src="@evento.Path" style="width:100%; height:750px" class="img-fluid" alt="" />
                         <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
                              style="background: rgba(43, 57, 64, .5);">
                             <div class="container">
                                 <div class="row justify-content-start">
                                     <div class="col-10 col-lg-8">
-                                        <h1 class="display-3 text-white animated slideInDown mb-4">@evento.Nome</h1>
+                                        <h1 class="display-3 text-white animated slideInDown mb-4">@evento.Name</h1>
                                         <p class="fs-5 fw-medium text-white mb-4 pb-2">
-                                            @evento.Descricao
+                                            @evento.Description
                                         </p>
                                         <a asp-controller="Eventos"
                                            asp-action="Index"
@@ -45,7 +47,7 @@
                         </div>
                     </div>
                 }
-            }
+
         </div>
 
     </div>
@@ -100,21 +102,21 @@
                                 <ul class="favorites-slider list-inline row p-0 mb-0">
                                     @if (Model != null)
                                     {
-                                        foreach (var evento in Model.AdicionadosRecentes)
+                                        foreach (var evento in events)
                                         {
                                             <li class="slide-item">
                                                 <div class="block-images position-relative">
                                                     <div class="img-box">
-                                                        <img src="@Url.Action("ImagemDestaque", "Img", new { id = evento.Id })" style="width:100%; height:175px" class="img-fluid" alt="" />
+                                                        <img src="@evento.Path" style="width:100%; height:175px" class="img-fluid" alt="" />
                                                     </div>
                                                     <div class="block-description">
                                                         <h6 class="iq-title">
-                                                            <a href="Eventos"> @evento.Nome </a>
+                                                            <a href="Eventos"> @evento.Name </a>
                                                         </h6>
                                                         <div class="movie-time d-flex align-items-center my-2">
                                                             <div class="badge badge-secondary p-1 mr-2">+18</div>
                                                             <span class="text-white" style="margin-left: 5px;">
-                                                                @evento.NomeBar
+                                                                @evento.Pub.User.Name
                                                             </span>
                                                         </div>
                                                         <a asp-action="Index"
@@ -212,126 +214,21 @@
                             </div>
                             <div class="favorite-contens">
                                 <ul class="favorites-slider list-inline row p-0 mb-0">
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/axe.jpg" style="width:100%; height: 175px" class="img-fluid" alt="" />
+                                    @foreach(var category in categorias)
+                                    {
+                                        <li class="slide-item">
+                                            <div class="block-images position-relative">
+                                                <div class="img-box">
+                                                    <img src="@category.Image" style="width:100%; height: 175px" class="img-fluid" alt="" />
+                                                </div>
+                                                <div class="block-description">
+                                                    <h6 class="iq-title">
+                                                        <a>@category.Name</a>
+                                                    </h6>
+                                                </div>
                                             </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>Axé</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/eletronica.png" style="width:100%; height: 175px" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>Eletrônica</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/forro.png" style="width:100%; height: 175px" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>Forró</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/funk.jpg" style="width:100%; height: 175px" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>Funk</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/mpb.jpg" style="width:100%; height: 175px" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>MPB</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/pagode.jpg" style="width:100%; height: 175px" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>Pagode</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/rap.png" style="width:100%; height: 175px" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>Rap</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/rock.jpg" style="width:100%; height: 175px" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>Rock</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/samba.png" style="width:100%; height: 175px" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>Samba</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="slide-item">
-                                        <div class="block-images position-relative">
-                                            <div class="img-box">
-                                                <img src="/img/generos/sertanejo.png" style="width:100%; height: 175px" class="img-fluid" alt="" />
-                                            </div>
-                                            <div class="block-description">
-                                                <h6 class="iq-title">
-                                                    <a>Sertanejo</a>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>

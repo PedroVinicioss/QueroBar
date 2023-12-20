@@ -57,7 +57,7 @@ namespace QueroBar.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(claimsIdentity), properties);
 
-                    return View("Login");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -104,6 +104,16 @@ namespace QueroBar.Controllers
                 };
 
                 db.Users.Add(user);
+                db.SaveChanges();
+
+                Pub pub = new Pub
+                {
+                    User_Id = user.Id,
+                    CNPJ = "123456789"
+                };
+
+ 
+                db.Pubs.Add(pub);
                 db.SaveChanges();
                 // Após salvar o usuário, autentique-o automaticamente
                 List<Claim> claims = new List<Claim>()
