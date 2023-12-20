@@ -2,6 +2,7 @@
 using QueroBar.Models.Data;
 using QueroBar.Models.Entities;
 using QueroBar.Util;
+using System.Security.Claims;
 
 namespace QueroBar.Controllers
 {
@@ -28,30 +29,35 @@ namespace QueroBar.Controllers
         {
             if(ModelState.IsValid)
             {
-                //verificar como pegar usuario logado
-                User user = new User();
-                Pub pub = db.Pubs.FirstOrDefault(p => p.User_Id == user.Id);
+                var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-                if(user != null)
+                if (userId != null)
                 {
-                    events.Pub_Id = pub.Id;
-                    events.Pub = pub;
+                    User user = db.Users.FirstOrDefault(x => x.Id == int.Parse(userId));
 
-                    foreach(Pictures pictures in pub.Pictures)
+                    if (user != null)
                     {
-                        var path = Functions.WriteFile(pictures.File, user.Id);
+                        Pub pub = db.Pubs.FirstOrDefault(p => p.User_Id == user.Id);
 
-                        var fileName = Path.GetFileName(path);
-                        var name = "images/" + user.Id + "/" + fileName;
-                        pictures.Path = name;
+                        events.Pub_Id = pub.Id;
+                        events.Pub = pub;
+
+                        foreach (Pictures pictures in pub.Pictures)
+                        {
+                            var path = Functions.WriteFile(pictures.File, user.Id);
+
+                            var fileName = Path.GetFileName(path);
+                            var name = "images/" + user.Id + "/" + fileName;
+                            pictures.Path = name;
+                        }
+
+                        db.Events.Add(events);
+                        db.SaveChanges();
                     }
-
-                    db.Events.Add(events);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    ModelState.AddModelError("Error", "Usuário não encontrado.");
+                    else
+                    {
+                        ModelState.AddModelError("Error", "Usuário não encontrado.");
+                    }
                 }
             }
             else

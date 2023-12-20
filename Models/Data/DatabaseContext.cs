@@ -24,5 +24,7 @@ namespace QueroBar.Models.Data
         public DbSet<PurchaseFinalize> PurchaseFinalizes { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Memberships> Memberships { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
     }
 }

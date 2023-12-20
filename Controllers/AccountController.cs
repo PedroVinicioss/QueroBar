@@ -29,6 +29,7 @@ namespace QueroBar.Controllers
             return View();
         }
 
+        //Login/LogOut--------------------------------------------------------------------------------------------------------------------------
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel login)
@@ -41,7 +42,7 @@ namespace QueroBar.Controllers
                     List<Claim> claims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.NameIdentifier, login.Email),
-                        new Claim("OtherProperties", "Eaxmple Role")
+                        new Claim("OtherProperties", user.Role)
                     };
 
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims,
@@ -56,7 +57,7 @@ namespace QueroBar.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(claimsIdentity), properties);
 
-                    return RedirectToAction("Index", "Home");
+                    return View("Login");
                 }
                 else
                 {
@@ -77,14 +78,16 @@ namespace QueroBar.Controllers
         }
 
 
-       [HttpGet]
+        //Registro --------------------------------------------------------------------------------------------------------------------------
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Register(RegisterViewModel newuser)
+        public async Task<IActionResult> RegisterAsync(RegisterViewModel newuser)
         {
             if(ModelState.IsValid)
             {
@@ -96,11 +99,30 @@ namespace QueroBar.Controllers
                     Status = (User.UserStatus)1,
                     Phone = newuser.Phone,
                     Membership_Id = 2,
-                    CreationDate = DateTime.Now
+                    CreationDate = DateTime.Now,
+                    Role = "Client"
                 };
 
                 db.Users.Add(user);
                 db.SaveChanges();
+                // Após salvar o usuário, autentique-o automaticamente
+                List<Claim> claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.NameIdentifier, newuser.Email),
+                    new Claim("OtherProperties", user.Role)
+                };
+
+                ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                AuthenticationProperties properties = new AuthenticationProperties()
+                {
+                    AllowRefresh = true,
+                    IsPersistent = true 
+                };
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity), properties);
+
                 return RedirectToAction("Index", "Home");
             }
             else

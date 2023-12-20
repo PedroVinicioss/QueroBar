@@ -28,6 +28,8 @@ namespace QueroBar.Models.Entities
         public virtual List<Genre>? Genres { get; set; }
         public virtual List<Ticket>? Tickets { get; set; }
         public virtual List<Artist>? Artists { get; set; }
+        public virtual List<Category>? Categories { get; set; }
+
 
         public int Pub_Id { get; set; }
         [ForeignKey("Pub_Id")]
