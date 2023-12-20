@@ -43,11 +43,11 @@
                 <a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Home</a>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="~/Login/Logoff/" class="nav-item nav-link">Sair do Sistema</a>
+                    <a asp-controller="Account" asp-action="LogOut" class="nav-item nav-link">Sair do Sistema</a>
                 }
                 else
                 {
-                    <a asp-controller="Account" asp-action="login" class="nav-item nav-link">Login</a>
+                    <a asp-controller="Account" asp-action="Login" class="nav-item nav-link">Login</a>
                 }
             </div>
             <a class="btn btn-outline btn-social pt-4" asp-controller="Carrinhos" asp-action="Index"><i class="fas fa-shopping-cart"></i></a>

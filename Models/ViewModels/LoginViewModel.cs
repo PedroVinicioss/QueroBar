@@ -14,7 +14,7 @@ namespace QueroBar.Models.ViewModels
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 
-        public bool rememberMe { get; set; }
+        public bool KeepLoggedIn { get; set; }
 
         public string? Error { get; set; }
 

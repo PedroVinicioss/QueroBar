@@ -4,6 +4,9 @@ using QueroBar.Models.Entities;
 using QueroBar.Models.ViewModels;
 using System.Data.Entity;
 using System.Runtime.Intrinsics.X86;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace QueroBar.Controllers
 {
@@ -17,6 +20,12 @@ namespace QueroBar.Controllers
 
         public IActionResult Login()
         {
+            ClaimsPrincipal claimUser = HttpContext.User;
+
+            if(claimUser.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+
+
             return View();
         }
 
@@ -26,12 +35,49 @@ namespace QueroBar.Controllers
         {
             if (ModelState.IsValid)
             {
-                var findUser = await db.Users.FirstOrDefaultAsync(p => p.Email == login.Email);
-                return RedirectToAction("Index", "Home");
+                User user = db.Users.Where(x => x.Email == login.Email && x.Password == login.Password).FirstOrDefault();
+                if (user != null)
+                {
+                    List<Claim> claims = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, login.Email),
+                        new Claim("OtherProperties", "Eaxmple Role")
+                    };
+
+                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims,
+                        CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    AuthenticationProperties properties = new AuthenticationProperties() {
+                        
+                        AllowRefresh = true,
+                        IsPersistent = login.KeepLoggedIn
+                    };
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                        new ClaimsPrincipal(claimsIdentity), properties);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("Error", "Email ou senha Inválidos");
+                }
+            }
+            else 
+            { 
+                ModelState.AddModelError("Error", "Todos os campos são obrigatórios."); 
             }
             return View();
         }
-        [HttpGet]
+
+        public async Task<IActionResult> LogOut()
+        {   
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login", "Account");
+        }
+
+
+       [HttpGet]
         public IActionResult Register()
         {
             return View();
