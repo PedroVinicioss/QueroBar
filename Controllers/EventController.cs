@@ -5,6 +5,7 @@ using QueroBar.Models.Data;
 using QueroBar.Models.Entities;
 using QueroBar.Models.ViewModels;
 using QueroBar.Util;
+using System.Data.Entity;
 using System.Security.Claims;
 
 namespace QueroBar.Controllers
@@ -16,8 +17,10 @@ namespace QueroBar.Controllers
         {
             db = _dbContext;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? id)
         {
+            ViewBag.events = db.Events.FirstOrDefault(p => p.Id == id);
+
             return View();
         }
 
@@ -27,6 +30,7 @@ namespace QueroBar.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult Create(CreateEventViewModel createEvent)
         {
             if (ModelState.IsValid)

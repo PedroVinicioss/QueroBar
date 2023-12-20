@@ -1,0 +1,172 @@
+﻿@model QueroBar.Models.Entities.Events
+@inject QueroBar.Models.Data.DatabaseContext dbContext
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!-- Header -->
+<div class="container-xxl py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4" style="z-index: 2;">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">@ViewBag.events.Name</h1>
+    </div>
+    <img src="~/@ViewBag.events.Path?id=@ViewBag.events.Id" alt="" class="background-imageHeader">
+</div>
+<!-- Header -->
+<!-- Informações -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gy-5 gx-4">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-2 pb-5">
+                    <img class="flex-shrink-0 img-fluid border rounded" src="/img/bar/perfilbar.png" alt=""
+                         style="width: 80px; height: 80px;">
+                    <div class="text-start ps-4">
+                        <h3 class="mb-3">@ViewBag.events.Pub.User.Name</h3>
+                        <span class="text-truncate me-3">
+                            <i class="fa fa-map-marker-alt text-primary me-2"></i>@ViewBag.events.Pub.Road
+                        </span>
+                        <span class="text-truncate me-3">
+                            <i class="far fa-clock text-primary me-2"></i>@ViewBag.events.Pub.OpeningTime / @ViewBag.events.Pub.ClosingTime
+                        </span>
+                        <span class="text-truncate me-0">
+                            <i class="fas fa-phone-alt text-primary me-2"></i>@ViewBag.events.Pub.User.Phone
+                        </span>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <h4 class="mb-3">Descrição do Evento</h4>
+                    <p>@ViewBag.events.Description</p>
+
+                    <div class="containerIcon mt-4">
+                        <div class="icon">
+                            <i class="fas fa-music text-white me-2"></i>
+                            <span>@ViewBag.events.Genre</span>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users text-white me-2"></i>
+                            <span>@ViewBag.events.Capacity</span>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-money-bill-wave text-white me-2"></i>
+                            <span>@ViewBag.events.Price</span>
+                        </div>
+                    </div>
+                    <div class="containerIcon2">
+                        <div class="icon">
+                            <i class="fas fa- text-white me-2">+18</i>
+                            <span>Classificação</span>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-calendar text-white me-2"></i>
+                            <span>@ViewBag.events.OpeningTime</span>
+                        </div>
+                    </div>
+                    <div class="button-container w-25 mt-4 ms-0">
+                        <a asp-controller="Event" asp-action="Comprar" asp-route-id="@ViewBag.events.Id">Comprar ingresso</a>
+                    </div>
+                </div>
+
+                <div class="">
+                    <div class="">
+                        <h4 class="mb-3">Descrição do Estabelecimento</h4>
+                        <p>
+                            @ViewBag.events.Pub.Description
+                        </p>
+
+                        <div class="containerIcon mt-4">
+                            <div class="icon">
+                                <i class="fas fa-car text-white me-2"></i>
+                                <span>Estacionamento</span>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-star text-white me-2"></i>
+                                <span>Área VIP</span>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-drumstick-bite text-white me-2"></i>
+                                <span>Serviços Alimentícios</span>
+                            </div>
+                        </div>
+                        <div class="containerIcon2">
+                            <div class="icon">
+                                <i class="fas fa-toilet text-white me-2"></i>
+                                <span>Banheiro</span>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-microphone text-white me-2"></i>
+                                <span>Palco</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="containerInfos">
+                    <h2 class="ps-2">Agenda</h2>
+                    <div class="info-div">
+                        <div class="info">
+                            <a asp-controller="Event" asp-action="Index" asp-route-id="@ViewBag.events.Id">@ViewBag.events.Name - @ViewBag.events.OpeningTime</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Propaganda
+                    <div class="bg-light rounded p-5 wow slideInUp mt-4" data-wow-delay="0.1s">
+                        <h4 class="mb-4">Company Detail</h4>
+                        <p class="m-0">Ipsum dolor ipsum accusam stet et et diam dolores, sed rebum sadipscing elitr
+                            vero dolores. Lorem dolore elitr justo et no gubergren sadipscing, ipsum et takimata
+                            aliquyam et rebum est ipsum lorem diam. Et lorem magna eirmod est et et sanctus et, kasd
+                            clita labore.</p>
+                    </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Informações -->
+<!-- Galeria -->
+<section class="gallery min-vh-100">
+    <div class="container-lg">
+        <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
+            <div class="col">
+                <img src="/img/bar/1.png" class="gallery-item" alt="gallery">
+            </div>
+            <div class="col">
+                <img src="/img/bar/2.png" class="gallery-item" alt="gallery">
+            </div>
+            <div class="col">
+                <img src="/img/bar/3.png" class="gallery-item" alt="gallery">
+            </div>
+            <div class="col">
+                <img src="/img/bar/4.png" class="gallery-item" alt="gallery">
+            </div>
+            <div class="col">
+                <img src="/img/bar/5.png" class="gallery-item" alt="gallery">
+            </div>
+            <div class="col">
+                <img src="/img/bar/6.png" class="gallery-item" alt="gallery">
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="gallery-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="img/bar/1.png" class="modal-img" alt="modal img">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Galeria -->
+<!-- Mapa -->
+<section class="gallery min-vh-100">
+    <div class="container-lg">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14713.72444105368!2d-45.1822269!3d-22.7864842!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ccc5f12867f9ff%3A0x12abe1ca37b9e907!2sCaldinho%20Bar%20e%20Petiscaria!5e0!3m2!1spt-BR!2sbr!4v1687025194606!5m2!1spt-BR!2sbr"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+<!-- Mapa -->

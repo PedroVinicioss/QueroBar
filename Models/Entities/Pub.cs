@@ -11,6 +11,9 @@ namespace QueroBar.Models.Entities
         [StringLength(50)]
         public string? CNPJ { get; set; }
 
+        [StringLength(300)]
+        public string? Description { get; set; }
+
         [StringLength(50)]
         public string? PixKey { get; set; }
 

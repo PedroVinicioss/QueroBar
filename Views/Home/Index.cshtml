@@ -35,7 +35,7 @@
                                         <p class="fs-5 fw-medium text-white mb-4 pb-2">
                                             @evento.Description
                                         </p>
-                                        <a asp-controller="Eventos"
+                                        <a asp-controller="Event"
                                            asp-action="Index"
                                            asp-route-id="@evento.Id"
                                            class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">
@@ -64,9 +64,10 @@
                         <div class="col-md-4">
                             <select class="form-select border-0">
                                 <option selected>Categoria</option>
-                                <option value="1">Category 1</option>
-                                <option value="2">Category 2</option>
-                                <option value="3">Category 3</option>
+                                @foreach(var category in categorias)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -106,7 +107,7 @@
                                             <li class="slide-item">
                                                 <div class="block-images position-relative">
                                                     <div class="img-box">
-                                                        <img src="@evento.Path" style="width:100%; height:175px" class="img-fluid" alt="" />
+                                                    <img src="@evento.Path?id=@evento.Id" style="width:100%; height:175px" class="img-fluid" alt="" />
                                                     </div>
                                                     <div class="block-description">
                                                         <h6 class="iq-title">
@@ -119,7 +120,7 @@
                                                             </span>
                                                         </div>
                                                         <a asp-action="Index"
-                                                           asp-controller="Eventos"
+                                                           asp-controller="Event"
                                                            asp-route-id="@evento.Id">
                                                             <div class="hover-buttons">
                                                                 <span class="btn btn-hover iq-button">
@@ -162,7 +163,7 @@
                                             <li class="slide-item">
                                                 <div class="block-images position-relative">
                                                     <div class="img-box">
-                                                        <img src="@evento.Path" style="width:100%; height:175px" class="img-fluid" alt="" />
+                                                    <img src="@evento.Path?id=@evento.Id" style="width:100%; height:175px" class="img-fluid" alt="" />
                                                     </div>
                                                     <div class="block-description">
                                                         <h6 class="iq-title">
@@ -175,7 +176,7 @@
                                                             </span>
                                                         </div>
                                                         <a asp-action="Index"
-                                                           asp-controller="Eventos"
+                                                           asp-controller="Event"
                                                            asp-route-id="@evento.Id">
                                                             <div class="hover-buttons">
                                                                 <span class="btn btn-hover iq-button">
