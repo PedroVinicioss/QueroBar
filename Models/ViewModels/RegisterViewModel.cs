@@ -7,11 +7,12 @@ namespace QueroBar.Models.ViewModels
     {
         [Required(ErrorMessage = "O Nome é obrigatório")]
         public string? Name { get; set; }
+
         [Required(ErrorMessage = "O Email é obrigatório")]
         [EmailAddress]
         public string? Email { get; set; }
-        [Required(ErrorMessage = "A Senha é obrigatória")]
 
+        [Required(ErrorMessage = "A Senha é obrigatória")]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
 

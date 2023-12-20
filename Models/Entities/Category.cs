@@ -11,10 +11,9 @@ namespace QueroBar.Models.Entities
         [StringLength(100)]
         public string? Name { get; set; }
 
-        [StringLength(300)]
-        public string? Description { get; set; }
+        //[StringLength(300)]
+        //public string? Description { get; set; }
 
         public string? Image { get; set; }
-
     }
 }

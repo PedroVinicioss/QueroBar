@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using QueroBar.Models.Entities;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace QueroBar.Models.ViewModels
@@ -17,6 +18,5 @@ namespace QueroBar.Models.ViewModels
         public bool KeepLoggedIn { get; set; }
 
         public string? Error { get; set; }
-
     }
 }

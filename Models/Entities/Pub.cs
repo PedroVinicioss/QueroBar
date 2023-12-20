@@ -40,6 +40,9 @@ namespace QueroBar.Models.Entities
         public DateTime? CreationDate { get; set; }
 
         public virtual List<Pictures>? Pictures { get; set; }
+
+        public virtual List<Icon>? Icons { get; set; }
+
         public int User_Id { get; set; }
         [ForeignKey("User_Id")]
         public virtual User? User { get; set; }

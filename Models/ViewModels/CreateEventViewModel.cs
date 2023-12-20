@@ -11,7 +11,7 @@ namespace QueroBar.Models.ViewModels
     {
         [Required(ErrorMessage = "O nome do evento é obrigatório")]
         [StringLength(150)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required(ErrorMessage = "Selecione a categoria")]
         public int CategoryId { get; set; } // Usando o ID da categoria
@@ -37,10 +37,10 @@ namespace QueroBar.Models.ViewModels
 
         [Required(ErrorMessage = "A descrição do evento é obrigatória")]
         [StringLength(300)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [Display(Name = "Imagem do Evento")]
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ImageFile { get; set; }
 
         public int Category { get; set; }
         public int Genre { get; set; }
