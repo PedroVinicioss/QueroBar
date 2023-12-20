@@ -164,7 +164,10 @@ namespace QueroBar.Controllers
                     user.Email = newuser.Email;
                     user.Phone = newuser.Phone;
                     user.Membership_Id = newuser.Membership_Id;
-
+                    if(user.Membership.Name != user.Role)
+                    {
+                        user.Role = user.Membership.Name;
+                    }
                     db.Users.Update(user);
                     db.SaveChanges();
 
@@ -175,7 +178,7 @@ namespace QueroBar.Controllers
                         userClaims.Remove(roleClaim);
                     }
 
-                    userClaims.Add(new Claim(ClaimTypes.Role, user.Membership.Name));
+                    userClaims.Add(new Claim(ClaimTypes.Role, user.Role));
 
                     var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
 
