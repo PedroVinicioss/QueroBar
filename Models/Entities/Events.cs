@@ -42,7 +42,6 @@ namespace QueroBar.Models.Entities
 
         [NotMapped] // Esta propriedade não será mapeada para o banco de dados
         public IFormFile? ImageFile { get; set; }
-
         public string Path { get; set; }
 
     }

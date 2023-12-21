@@ -73,7 +73,13 @@ namespace QueroBar.Controllers
                             name = "images/" + user.Id + "_" + user.Name + "/" + fileName;
                             events.Path = name;
 
-                            db.SaveChanges(); 
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            string defaultEventImagePath = "images/noimage.png";
+                            events.Path = defaultEventImagePath;
+                            db.SaveChanges();
                         }
                     }
                     else

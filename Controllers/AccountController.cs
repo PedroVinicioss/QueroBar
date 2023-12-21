@@ -136,6 +136,8 @@ namespace QueroBar.Controllers
             return View();
         }
 
+        //Editar Perfil --------------------------------------------------------------------------------------------------------------------------
+
         [HttpPost]
         public async Task<IActionResult> PerfilAsync(User newuser)
         {
@@ -193,6 +195,8 @@ namespace QueroBar.Controllers
                     userClaims.Add(new Claim(ClaimTypes.Role, user.Role));
 
                     var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                         new ClaimsPrincipal(claimsIdentity), new AuthenticationProperties());
