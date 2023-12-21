@@ -60,17 +60,21 @@ namespace QueroBar.Controllers
 
                         var path = "";
                         var name = "";
-
-                        if (createEvent.ImageFile != null)
-                        {
-                            path = Functions.WriteFile(createEvent.ImageFile, user.Id, user.Name);
-                            var fileName = Path.GetFileName(path);
-                            name = "images/" + user.Id + "_" + user.Name + "/" + fileName;
-                            events.Path = name;
-                        }
+                        events.Path = name;
 
                         db.Events.Add(events);
                         db.SaveChanges();
+
+                        if (createEvent.ImageFile != null)
+                        {
+                            string imageName = "Event_" + events.Id.ToString(); 
+                            path = Functions.WriteFile(createEvent.ImageFile, user.Id, user.Name, imageName);
+                            var fileName = Path.GetFileName(path);
+                            name = "images/" + user.Id + "_" + user.Name + "/" + fileName;
+                            events.Path = name;
+
+                            db.SaveChanges(); 
+                        }
                     }
                     else
                     {

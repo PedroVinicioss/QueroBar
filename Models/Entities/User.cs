@@ -42,5 +42,9 @@ namespace QueroBar.Models.Entities
         public DateTime? CreationDate { get; set; }
 
         public string? Role { get; set; }
+
+        [NotMapped] 
+        public IFormFile? File { get; set; }
+
     }
 }

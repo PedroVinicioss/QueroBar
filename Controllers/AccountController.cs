@@ -8,6 +8,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using QueroBar.Util;
+using System.IO;
 
 namespace QueroBar.Controllers
 {
@@ -107,16 +110,6 @@ namespace QueroBar.Controllers
                 db.Users.Add(user);
                 db.SaveChanges();
 
-                Pub pub = new Pub
-                {
-                    User_Id = user.Id,
-                    CNPJ = "123456789"
-                };
-
- 
-                db.Pubs.Add(pub);
-                db.SaveChanges();
-                // Após salvar o usuário, autentique-o automaticamente
                 List<Claim> claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.NameIdentifier, newuser.Email),
@@ -168,6 +161,25 @@ namespace QueroBar.Controllers
                     {
                         user.Role = user.Membership.Name;
                     }
+
+                    var path = "";
+                    var name = "";
+                    if (user.File != null)
+                    {
+                        path = Functions.WriteFilePerfil(user.File, user.Id, user.Name);
+                        var fileName = Path.GetFileName(path);
+                        name = "images/" + user.Id + "_" + user.Name + "/" + fileName;
+                        user.Pic = name;
+                    }
+
+                    if(user.Role == "Pub")
+                    {
+                        Pub pub = new Pub();
+                        pub.User_Id = user.Id;
+                        pub.CreationDate = DateTime.Now;
+                        db.Pubs.Add(pub);
+                    }
+
                     db.Users.Update(user);
                     db.SaveChanges();
 

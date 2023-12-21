@@ -162,6 +162,44 @@ namespace QueroBar.Models.Data
                     Id = 3,
                     Name = "Diversos"
                 });
+
+            modelBuilder.Entity<Memberships>().HasData(
+                new Memberships
+                {
+                    Id = 1,
+                    Name = "Administrador",
+                    Color = "#000000",
+                    Description = "Membership dedicado aos Admins do Sistema."
+                },
+                new Memberships
+                {
+                    Id = 2,
+                    Name = "Client",
+                    Color = "#FF7628",
+                    Description = "Membership dedicados aos Clientes do Sistema."
+                },
+                new Memberships
+                {
+                    Id = 3,
+                    Name = "Pub",
+                    Color = "#FFFFFF",
+                    Description = "Membership dedicados aos Bares do Sistema."
+                });
+
+            modelBuilder.Entity<User>().HasData(
+            new User
+            {
+                Id = 1,
+                Name = "Admin",
+                Role = "Administrador",
+                Membership_Id = 1,
+                Email = "admin@gmail.com",
+                Password = "#senha123",
+                Status = (User.UserStatus)1,
+                CreationDate = DateTime.Now,
+                Pic = "images/user.jpg",
+                Phone = "00000000000"
+            });
         }
     }
 }

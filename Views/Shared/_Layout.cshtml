@@ -72,7 +72,7 @@
                     var roleClaim = userClaims.FirstOrDefault(c => c.Type == "OtherProperties");
                     string role = roleClaim?.Value;
 
-                    if(role == "Client")
+                    if(role == "Pub")
                     {
                         <a asp-controller="Event" asp-action="Create" class="nav-item nav-link">Criar Evento</a>
                     }
