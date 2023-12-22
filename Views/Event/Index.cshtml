@@ -19,7 +19,7 @@
         <div class="row gy-5 gx-4">
             <div class="col-lg-8">
                 <div class="d-flex align-items-center mb-2 pb-5">
-                    <img class="flex-shrink-0 img-fluid border rounded" src="/img/bar/perfilbar.png" alt=""
+                    <img class="flex-shrink-0 img-fluid border rounded" src="@ViewBag.events.Pub.User.Pic" alt=""
                          style="width: 80px; height: 80px;">
                     <div class="text-start ps-4">
                         <h3 class="mb-3">@ViewBag.events.Pub.User.Name</h3>
@@ -41,7 +41,7 @@
                     <div class="containerIcon mt-4">
                         <div class="icon">
                             <i class="fas fa-music text-white me-2"></i>
-                            <span>@ViewBag.events.Genre</span>
+                            <span>@ViewBag.events.Genre.Name</span>
                         </div>
                         <div class="icon">
                             <i class="fas fa-users text-white me-2"></i>

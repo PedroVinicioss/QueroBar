@@ -14,6 +14,15 @@
     
 }
 
+<style>
+    .div-buttton {
+        display: flex;
+        /* align-items: center; */
+        /* flex-wrap: wrap; */
+        flex-direction: row-reverse;
+    }
+</style>
+
 <!-- Spinner de carregamento -->
 <div id="spinner"
      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -29,22 +38,22 @@
         <div class="bg-white shadow rounded-lg d-block d-sm-flex">
             <div class="profile-tab-nav border-right">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab"
+                    <a class="nav-link active tab-link" data-toggle="pill" href="#account" role="tab"
                        aria-controls="account" aria-selected="true">
                         <i class="fa fa-home text-center mr-1"></i>
                         Conta
                     </a>
-                    <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab"
+                    <a class="nav-link tab-link" data-toggle="pill" href="#password" role="tab"
                        aria-controls="password" aria-selected="false">
                         <i class="fa fa-key text-center mr-1"></i>
                         Senha
                     </a>
-                    <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab"
+                    <a class="nav-link tab-link" data-toggle="pill" href="#security" role="tab"
                        aria-controls="security" aria-selected="false">
                         <i class="fa fa-user text-center mr-1"></i>
                         Segurança
                     </a>
-                    <a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab"
+                    <a class="nav-link tab-link" data-toggle="pill" href="#notification" role="tab"
                        aria-controls="notification" aria-selected="false">
                         <i class="fa fa-bell text-center mr-1"></i>
                         Notificações
@@ -92,7 +101,9 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <div class="div-buttton">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
@@ -112,20 +123,13 @@
                                 <input type="password" class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Confirme a Nova Senha</label>
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
                     </div>
-                    <div>
-                        <button class="btn btn-light me-1">Cancelar</button>
-                        <button class="btn btn-primary">Concluir</button>
+                    <div class="div-buttton">
+                        <button class="btn btn-primary">Salvar</button>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
-                    <h3 class="mb-4">Security Settings</h3>
+                    <h3 class="mb-4">Informações do Bar</h3>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -150,9 +154,9 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-light">Cancel</button>
+                    <div class="div-buttton">
+                        <button class="btn btn-primary">Concluir</button>
+                        <button class="btn btn-light me-1">Cancelar</button>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
@@ -175,9 +179,9 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button class="btn btn-primary">Update</button>
-                        <button class="btn btn-light">Cancel</button>
+                    <div class="div-buttton">
+                        <button class="btn btn-primary">Concluir</button>
+                        <button class="btn btn-light me-1">Cancelar</button>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
@@ -207,12 +211,26 @@
                             </label>
                         </div>
                     </div>
-                    <div>
-                        <button class="btn btn-light me-1">Cancelar</button>
+                    <div class="div-buttton">
                         <button class="btn btn-primary">Concluir</button>
+                        <button class="btn btn-light me-1">Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.tab-link').on('click', function (e) {
+            e.preventDefault();
+            var targetTab = $(this).attr('href');
+            $('.tab-link').removeClass('active');
+            $(this).addClass('active');
+            $('.tab-pane').removeClass('show active');
+            $(targetTab).addClass('show active');
+        });
+    });
+</script>

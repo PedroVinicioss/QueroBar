@@ -61,3 +61,7 @@ msbuild.wrn
 *.cache
 *.props
 *.csproj
+*.cache
+*.cache
+obj/Debug/net6.0/QueroBar.AssemblyInfoInputs.cache
+*.cache
