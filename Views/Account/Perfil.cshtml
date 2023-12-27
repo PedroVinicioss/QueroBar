@@ -1,4 +1,4 @@
-﻿@model QueroBar.Models.Entities.User
+﻿@model QueroBar.Models.ViewModels.PerfilViewModel
 @inject QueroBar.Models.Data.DatabaseContext db
 @using System.Security.Claims;
 
@@ -40,7 +40,7 @@
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active tab-link" data-toggle="pill" href="#account" role="tab"
                        aria-controls="account" aria-selected="true">
-                        <i class="fa fa-home text-center mr-1"></i>
+                        <i class="fa fa-user text-center mr-1"></i>
                         Conta
                     </a>
                     <a class="nav-link tab-link" data-toggle="pill" href="#password" role="tab"
@@ -48,10 +48,10 @@
                         <i class="fa fa-key text-center mr-1"></i>
                         Senha
                     </a>
-                    <a class="nav-link tab-link" data-toggle="pill" href="#security" role="tab"
-                       aria-controls="security" aria-selected="false">
-                        <i class="fa fa-user text-center mr-1"></i>
-                        Segurança
+                    <a class="nav-link tab-link" data-toggle="pill" href="#pub" role="tab"
+                       aria-controls="pub" aria-selected="false">
+                        <i class="fa fa-home text-center mr-1"></i>
+                        Bar
                     </a>
                     <a class="nav-link tab-link" data-toggle="pill" href="#notification" role="tab"
                        aria-controls="notification" aria-selected="false">
@@ -108,60 +108,155 @@
                 </div>
                 <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                     <h3 class="mb-4">Senha</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Senha Atual</label>
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Nova Senha</label>
-                                <input type="password" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="div-buttton">
-                        <button class="btn btn-primary">Salvar</button>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
-                    <h3 class="mb-4">Informações do Bar</h3>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Login</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Two-factor auth</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="recovery">
-                                    <label class="form-check-label" for="recovery">
-                                        Recovery
-                                    </label>
+                    <form method="post" asp-controller="Account" asp-action="Perfil">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Senha Atual</label>
+                                    <input asp-for="Password" type="password" class="form-control">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="div-buttton">
-                        <button class="btn btn-primary">Concluir</button>
-                        <button class="btn btn-light me-1">Cancelar</button>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nova Senha</label>
+                                    <input asp-for="NewPassword" type="password" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="div-buttton">
+                            <button class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="pub" role="tabpanel" aria-labelledby="pub-tab">
+                    <h3 class="mb-4">Informações do Bar</h3>
+                    <form method="post" asp-controller="Account" asp-action="Perfil">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>CNPJ</label>
+                                    <input asp-for="CNPJ" type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Chave Pix</label>
+                                    <input asp-for="PixKey" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>CEP</label>
+                                    <input asp-for="ZipCode" type="number" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Estado</label>
+                                    <select asp-for="State" class="form-control">
+                                        <option value="">Selecione um estado</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Cidade</label>
+                                    <input asp-for="City" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Bairro</label>
+                                    <input asp-for="Neighborhood" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Rua</label>
+                                    <input asp-for="Road" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Número</label>
+                                    <input asp-for="Number" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Horário de Abertura</label>
+                                    <input asp-for="OpeningTime" type="time" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Horário de fechamento</label>
+                                    <input asp-for="ClosingTime" type="time" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="recovery">
+                                        <label class="form-check-label" for="recovery">
+                                            Recovery
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="div-buttton">
+                            <button class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
-                    <h3 class="mb-4">Application Settings</h3>
+                    <h3 class="mb-4">Mult.Mídia Bar</h3>
                     <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <input asp-for="File" style="display:none; cursor:pointer;" type="file" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" placeholder="Foto" id="input-pic" class="input-text" />
+                                <div class="container-image">
+                                    <img style="cursor:pointer; -webkit-box-shadow: 14px 14px 30px -23px rgba(0,0,0,1); -moz-box-shadow: 14px 14px 30px -23px rgba(0,0,0,1); box-shadow: 14px 14px 30px -23px rgba(0,0,0,1);" src="~/images/noimage.png" id="output" width="70" />
+                                    <a class="btn-center"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                </div>
+                                <input asp-for="File" style="display:none; cursor:pointer;" type="file" onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])" placeholder="Foto" id="input-pic" class="input-text" />
+                                <div class="container-image">
+                                    <img style="cursor:pointer; -webkit-box-shadow: 14px 14px 30px -23px rgba(0,0,0,1); -moz-box-shadow: 14px 14px 30px -23px rgba(0,0,0,1); box-shadow: 14px 14px 30px -23px rgba(0,0,0,1);" src="~/images/noimage.png" id="output" width="70" />
+                                    <a class="btn-center"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <div class="form-check">
@@ -186,6 +281,90 @@
                 </div>
                 <div class="tab-pane fade" id="notification" role="tabpanel" aria-labelledby="notification-tab">
                     <h3 class="mb-4">Notificações</h3>
+                    <form method="post" asp-controller="account" asp-action="PubGallery">
+                        <div class="row">
+                            <!-- Primeira Linha de Inputs -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input asp-for="File" style="display:none; cursor:pointer;" type="file" onchange="previewImage(event, 'output1', 'plusIcon1')" placeholder="Foto" id="input-pic1" class="input-text" />
+                                    <label for="input-pic1">
+                                        <div class="container-image" style="position: relative; text-align: center; padding: 10px; border-radius: 8px; background-color: #fff; cursor: pointer;">
+                                            <img style="cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.3); width: 210px; height: 105px; border-radius: 8px;" src="~/images/noimage.png" id="output1" />
+                                            <a class="btn-center" id="plusIcon1" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Segunda Linha de Inputs -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input asp-for="File" style="display:none; cursor:pointer;" type="file" onchange="previewImage(event, 'output2', 'plusIcon2')" placeholder="Foto" id="input-pic2" class="input-text" />
+                                    <label for="input-pic2">
+                                        <div class="container-image" style="position: relative; text-align: center; padding: 10px; border-radius: 8px; background-color: #fff; cursor: pointer;">
+                                            <img style="cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.3); width: 210px; height: 105px; border-radius: 8px;" src="~/images/noimage.png" id="output2" />
+                                            <a class="btn-center" id="plusIcon2" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Terceira Linha de Inputs -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input asp-for="File" style="display:none; cursor:pointer;" type="file" onchange="previewImage(event, 'output3', 'plusIcon3')" placeholder="Foto" id="input-pic3" class="input-text" />
+                                    <label for="input-pic3">
+                                        <div class="container-image" style="position: relative; text-align: center; padding: 10px; border-radius: 8px; background-color: #fff; cursor: pointer;">
+                                            <img style="cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.3); width: 210px; height: 105px; border-radius: 8px;" src="~/images/noimage.png" id="output3" />
+                                            <a class="btn-center" id="plusIcon3" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Quarta Linha de Inputs -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input asp-for="File" style="display:none; cursor:pointer;" type="file" onchange="previewImage(event, 'output4', 'plusIcon4')" placeholder="Foto" id="input-pic4" class="input-text" />
+                                    <label for="input-pic4">
+                                        <div class="container-image" style="position: relative; text-align: center; padding: 10px; border-radius: 8px; background-color: #fff; cursor: pointer;">
+                                            <img style="cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.3); width: 210px; height: 105px; border-radius: 8px;" src="~/images/noimage.png" id="output4" />
+                                            <a class="btn-center" id="plusIcon4" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Quinta Linha de Inputs -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input asp-for="File" style="display:none; cursor:pointer;" type="file" onchange="previewImage(event, 'output5', 'plusIcon5')" placeholder="Foto" id="input-pic5" class="input-text" />
+                                    <label for="input-pic5">
+                                        <div class="container-image" style="position: relative; text-align: center; padding: 10px; border-radius: 8px; background-color: #fff; cursor: pointer;">
+                                            <img style="cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.3); width: 210px; height: 105px; border-radius: 8px;" src="~/images/noimage.png" id="output5" />
+                                            <a class="btn-center" id="plusIcon5" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Sexta Linha de Inputs -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <input asp-for="File" style="display:none; cursor:pointer;" type="file" onchange="previewImage(event, 'output6', 'plusIcon6')" placeholder="Foto" id="input-pic6" class="input-text" />
+                                    <label for="input-pic6">
+                                        <div class="container-image" style="position: relative; text-align: center; padding: 10px; border-radius: 8px; background-color: #fff; cursor: pointer;">
+                                            <img style="cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.3); width: 210px; height: 105px; border-radius: 8px;" src="~/images/noimage.png" id="output6" />
+                                            <a class="btn-center" id="plusIcon6" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
                     <div class="form-group">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="notification1">
@@ -233,4 +412,13 @@
             $(targetTab).addClass('show active');
         });
     });
+
+    function previewImage(event, outputId, plusIconId) {
+        const output = document.getElementById(outputId);
+        output.src = URL.createObjectURL(event.target.files[0]);
+        const plusIcon = document.getElementById(plusIconId);
+        if (plusIcon) {
+            plusIcon.style.display = 'none';
+        }
+    }
 </script>

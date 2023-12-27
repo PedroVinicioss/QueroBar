@@ -1,11 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using QueroBar.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
-namespace QueroBar.Models.Entities
+namespace QueroBar.Models.ViewModels
 {
-    public class Pub
+    public class PerfilViewModel
     {
-        [Key]
+        public string? Name { get; set; }
+
+        [EmailAddress]
+        public string? Email { get; set; }
+        [DataType(DataType.Password)]
+        public string? Password { get; set; }
+        [DataType(DataType.Password)]
+        public string? NewPassword { get; set; }
+        public IFormFile? File { get; set; }
+
+        public string? Phone { get; set; }
+
+        public string? Error { get; set; }
+
+        public int? Membership { get; set; }
+
         public int Id { get; set; }
 
         [StringLength(50)]
@@ -17,22 +32,22 @@ namespace QueroBar.Models.Entities
         [StringLength(50)]
         public string? PixKey { get; set; }
 
-        [StringLength (50)]
+        [StringLength(50)]
         public string? ZipCode { get; set; }
-            
-        [StringLength (50)]
+
+        [StringLength(50)]
         public string? State { get; set; }
 
         [StringLength(50)]
-        public string? City { get; set;}
+        public string? City { get; set; }
 
-        [StringLength (50)]
+        [StringLength(50)]
         public string? Neighborhood { get; set; }
 
-        [StringLength (50)]
+        [StringLength(50)]
         public string? Road { get; set; }
 
-        [StringLength (50)]
+        [StringLength(50)]
         public int? Number { get; set; }
 
         public DateTime? OpeningTime { get; set; }
@@ -42,9 +57,5 @@ namespace QueroBar.Models.Entities
         public virtual List<Pictures>? Pictures { get; set; }
 
         public virtual List<Icon>? Icons { get; set; }
-
-        public int User_Id { get; set; }
-        [ForeignKey("User_Id")]
-        public virtual User? User { get; set; }
     }
 }

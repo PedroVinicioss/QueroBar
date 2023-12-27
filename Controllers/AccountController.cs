@@ -139,7 +139,7 @@ namespace QueroBar.Controllers
         //Editar Perfil --------------------------------------------------------------------------------------------------------------------------
 
         [HttpPost]
-        public async Task<IActionResult> PerfilAsync(User newuser)
+        public async Task<IActionResult> PerfilAsync(PerfilViewModel newuser)
         {
             ClaimsPrincipal claimUser = HttpContext.User;
 
@@ -158,7 +158,7 @@ namespace QueroBar.Controllers
                     user.Name = newuser.Name;
                     user.Email = newuser.Email;
                     user.Phone = newuser.Phone;
-                    user.Membership_Id = newuser.Membership_Id;
+                    user.Membership_Id = newuser.Membership;
                     if(user.Membership.Name != user.Role)
                     {
                         user.Role = user.Membership.Name;
@@ -222,7 +222,7 @@ namespace QueroBar.Controllers
 
                 var user = db.Users.Where(x => x.Email == email).FirstOrDefault();
 
-                return View(user);
+                return View();
             }
         }
     }
